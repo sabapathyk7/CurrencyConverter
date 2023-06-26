@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyTableViewCell: UITableViewCell {
+class CurrencyCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

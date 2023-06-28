@@ -9,6 +9,7 @@ import UIKit
 
 class CurrencyCell: UITableViewCell {
 
+  static let identifier = "CurrencyCell"
   lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical

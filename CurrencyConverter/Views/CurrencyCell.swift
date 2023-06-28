@@ -66,9 +66,6 @@ class CurrencyCell: UITableViewCell {
 
     mainStackView.addArrangedSubview(currencyRateLabel)
     mainStackView.addArrangedSubview(stackView)
-
-
-
   }
 
   override func awakeFromNib() {

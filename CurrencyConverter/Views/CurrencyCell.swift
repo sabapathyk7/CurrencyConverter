@@ -14,7 +14,7 @@ class CurrencyCell: UITableViewCell {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
     vstackView.alignment = .center
-    vstackView.distribution = .fillEqually
+    vstackView.distribution = .fill
     vstackView.spacing = 10
     return vstackView
   }()
@@ -38,7 +38,7 @@ class CurrencyCell: UITableViewCell {
     let hstackView = UIStackView()
     hstackView.axis = .horizontal
     hstackView.alignment = .center
-    hstackView.distribution = .fillEqually
+    hstackView.distribution = .fill
     hstackView.spacing = 10
     return hstackView
   }()
@@ -54,7 +54,7 @@ class CurrencyCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    setupUI()
   }
 
   required init?(coder: NSCoder) {
@@ -67,6 +67,7 @@ class CurrencyCell: UITableViewCell {
 
     mainStackView.addArrangedSubview(currencyRateLabel)
     mainStackView.addArrangedSubview(stackView)
+    contentView.addSubview(mainStackView)
   }
 
   override func awakeFromNib() {

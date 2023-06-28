@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Active
+//https://pastebin.com/raw/Nq1KvHjZ
 struct Currency {
   let name: String
   let rate: Double

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20442A49EE3200152584 /* AppDelegate.swift */; };
 		A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20462A49EE3200152584 /* SceneDelegate.swift */; };
-		A25B20492A49EE3200152584 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20482A49EE3200152584 /* ViewController.swift */; };
 		A25B204E2A49EE3400152584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A25B204D2A49EE3400152584 /* Assets.xcassets */; };
 		A25B20512A49EE3400152584 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A25B204F2A49EE3400152584 /* LaunchScreen.storyboard */; };
 		A25B205C2A49EE3400152584 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B205B2A49EE3400152584 /* CurrencyConverterTests.swift */; };
@@ -45,7 +44,6 @@
 		A25B20412A49EE3200152584 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25B20442A49EE3200152584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A25B20462A49EE3200152584 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A25B20482A49EE3200152584 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A25B204D2A49EE3400152584 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A25B20502A49EE3400152584 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A25B20522A49EE3400152584 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 		A25B20762A49EF7400152584 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A25B20482A49EE3200152584 /* ViewController.swift */,
 				A25B207A2A49F28900152584 /* CurrencyViewController.swift */,
 			);
 			path = Controller;
@@ -315,7 +312,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A25B20492A49EE3200152584 /* ViewController.swift in Sources */,
 				A25B20792A49EF9300152584 /* CurrencyViewModel.swift in Sources */,
 				A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */,
 				A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */,

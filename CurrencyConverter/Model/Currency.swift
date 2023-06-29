@@ -9,8 +9,16 @@ import Foundation
 
 // Active
 //https://pastebin.com/raw/Nq1KvHjZ
-struct Currency {
-  let name: String
-  let rate: Double
-  let code: String
+
+struct Currency: Decodable {
+//  let success: Bool
+//  let timestamp: Int
+//  let base: String
+//  let date: String
+  let rates: [CurrencyData]
+}
+
+struct CurrencyData: Decodable{
+    let code: String
+    let rate: Int
 }

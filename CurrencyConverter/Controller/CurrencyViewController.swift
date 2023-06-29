@@ -14,6 +14,11 @@ class CurrencyViewController: UIViewController {
 
         // Do any additional setup after loading the view.
       self.view.backgroundColor = .blue
+
+      let requestService = RequestService()
+      requestService.fetchCurrencyData { data in
+        print(data)
+      }
     }
     
 

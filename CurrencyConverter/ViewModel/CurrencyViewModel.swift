@@ -6,3 +6,28 @@
 //
 
 import Foundation
+
+class CurrencyViewModel: NSObject {
+
+  private var apiService: RequestService!
+  private(set) var currencyData: [Currency]! {
+    didSet {
+      self.bindCurrencyViewModelToController()
+    }
+  }
+
+  var bindCurrencyViewModelToController: (() -> ()) = {}
+
+  override init() {
+    super.init()
+    self.apiService = RequestService()
+
+  }
+
+  func callFetchCurrencyData() {
+    self.apiService.fetchCurrencyData { (currencyData) in
+      self.currencyData = currencyData
+    }
+  }
+
+}

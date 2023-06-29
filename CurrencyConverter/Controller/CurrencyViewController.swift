@@ -17,7 +17,7 @@ class CurrencyViewController: UIViewController {
 
       let requestService = RequestService()
       requestService.fetchCurrencyData { data in
-        print(data)
+
       }
     }
     

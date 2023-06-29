@@ -13,9 +13,9 @@ class CurrencyCell: UITableViewCell {
   lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
-    vstackView.alignment = .center
+//    vstackView.alignment = .center
     vstackView.distribution = .fill
-    vstackView.spacing = 10
+//    vstackView.spacing = 10
     return vstackView
   }()
 
@@ -24,6 +24,7 @@ class CurrencyCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
+    label.textColor = .blue
     return label
   }()
   lazy var currencyCodeLabel: UILabel = {
@@ -31,15 +32,16 @@ class CurrencyCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
+    label.textColor = .blue
     return label
   }()
 
   lazy var mainStackView: UIStackView = {
     let hstackView = UIStackView()
     hstackView.axis = .horizontal
-    hstackView.alignment = .center
+//    hstackView.alignment = .center
     hstackView.distribution = .fill
-    hstackView.spacing = 10
+//    hstackView.spacing = 10
     return hstackView
   }()
 
@@ -48,6 +50,7 @@ class CurrencyCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
+    label.textColor = .blue
     return label
   }()
 
@@ -68,6 +71,18 @@ class CurrencyCell: UITableViewCell {
     mainStackView.addArrangedSubview(currencyRateLabel)
     mainStackView.addArrangedSubview(stackView)
     contentView.addSubview(mainStackView)
+
+    let safeArea = contentView.layoutMarginsGuide
+    mainStackView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+    mainStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
+    mainStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10).isActive = true
+    mainStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10).isActive = true
+
+    currencyNameLabel.heightAnchor.constraint(equalToConstant: 140).isActive = true
+    currencyNameLabel.widthAnchor.constraint(equalToConstant: 140).isActive = true
+
+
+
   }
 
   var currency: Currency? {

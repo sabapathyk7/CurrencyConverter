@@ -9,18 +9,46 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  private var currencyViewModel:CurrencyViewModel = CurrencyViewModel()
+  private var dataSource: CurrencyDataSource<CurrencyCell,Currency>!
+  private var currencyTableView: UITableView = UITableView()
 
-        // Do any additional setup after loading the view.
-      self.view.backgroundColor = .blue
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-      let requestService = RequestService()
-      requestService.fetchCurrencyData { data in
+    let displayWidth: CGFloat = self.view.frame.width
+    let displayHeight: CGFloat = self.view.frame.height
+    currencyTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+    currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
+    self.view.addSubview(currencyTableView)
 
-      }
+    callViewModelForUIUpdate()
+
+  }
+
+  func callViewModelForUIUpdate() {
+    self.currencyViewModel = CurrencyViewModel()
+    self.currencyViewModel.bindCurrencyViewModelToController = {
+      self.updateDataSource()
     }
-    
+  }
+
+  func updateDataSource() {
+    self.dataSource = CurrencyDataSource(cellIdentifier: "CurrencyCell", currencies: self.currencyViewModel.currencyData, configureCell: { cell, cvm in
+      let currencyCell = cell as! CurrencyCell
+      print(cvm.code)
+      currencyCell.currencyCodeLabel.text = cvm.code
+      currencyCell.currencyRateLabel.text = String(format: "%f", cvm.rate)
+      let locale = Locale.current
+      currencyCell.currencyNameLabel.text = locale.localizedString(forCurrencyCode: cvm.code )
+
+    })
+    DispatchQueue.main.async {
+      self.currencyTableView.dataSource = self.dataSource
+      self.currencyTableView.reloadData()
+    }
+  }
+
 
     /*
     // MARK: - Navigation

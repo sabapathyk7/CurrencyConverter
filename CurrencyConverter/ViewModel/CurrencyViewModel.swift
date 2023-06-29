@@ -21,7 +21,7 @@ class CurrencyViewModel: NSObject {
   override init() {
     super.init()
     self.apiService = RequestService()
-
+    callFetchCurrencyData()
   }
 
   func callFetchCurrencyData() {

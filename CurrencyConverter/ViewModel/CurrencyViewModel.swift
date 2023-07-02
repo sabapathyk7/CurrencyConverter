@@ -7,26 +7,18 @@
 
 import Foundation
 
-class CurrencyViewModel {
+struct CurrencyViewModel {
 
   private var apiService: RequestService?
-  private(set) var currencyData: CurrencyData? {
-    didSet {
-      self.bindCurrencyViewModelToController()
-    }
-  }
-
-  var bindCurrencyViewModelToController: (() -> ()) = {}
 
    init() {
     self.apiService = RequestService()
-    callFetchCurrencyData()
   }
 
-  func callFetchCurrencyData() {
+  func callFetchCurrencyData(completion: @escaping (CurrencyData) -> ()){
     self.apiService?.fetchCurrencyData { (currencyData) in
-    self.currencyData = currencyData
-    } 
+      completion(currencyData)
+    }
   }
 
 }

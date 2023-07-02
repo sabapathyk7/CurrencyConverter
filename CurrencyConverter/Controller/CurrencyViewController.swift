@@ -7,30 +7,9 @@
 
 import UIKit
 
-class CurrencyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CurrencyViewController: UIViewController {
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let dictionary = self.currencyViewModel.currencyData?.rates as? [String: Double]  {
-      return dictionary.count
-    }
-    return 0
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyCell
-    let currencies = self.currencyViewModel.currencyData?.rates
-    let data = currencies?.compactMap{$0}
-    if let data = data {
-      let (key, value) = data[indexPath.row]
-      cell.currencyCodeLabel.text = key
-      cell.currencyRateLabel.text = String(format: "%p", value)
-    }
-    return cell
-  }
-
-
-  private var currencyViewModel:CurrencyViewModel = CurrencyViewModel()
-//  private var dataSource: CurrencyDataSource<CurrencyCell,CurrencyData>!
+  private let currencyViewModel:CurrencyViewModel = CurrencyViewModel()
   private var currencyTableView: UITableView = UITableView()
   private var currencyData:CurrencyData?
 
@@ -44,47 +23,40 @@ class CurrencyViewController: UIViewController, UITableViewDelegate, UITableView
     self.view.addSubview(currencyTableView)
     currencyTableView.delegate = self
     currencyTableView.dataSource = self
-    callViewModelForUIUpdate()
-  }
-
-  func callViewModelForUIUpdate() {
-    self.currencyViewModel = CurrencyViewModel()
-    self.currencyViewModel.bindCurrencyViewModelToController = {
-//      self.updateDataSource()
+    currencyViewModel.callFetchCurrencyData { currencyData in
+      self.currencyData = currencyData
       DispatchQueue.main.async {
-            self.currencyTableView.dataSource = self
-            self.currencyTableView.reloadData()
-          }
-
+        self.currencyTableView.reloadData()
+      }
     }
   }
+}
 
-//  func updateDataSource() {
-//
-//    dataSource = CurrencyDataSource(cellIdentifier: "CurrencyCell", currencies: currencyViewModel.currencyData, configureCell: { cell, cvm in
-//      let currencyCell = cell as! CurrencyCell
-//      print(cvm.code)
-//      currencyCell.currencyCodeLabel.text = cvm.code
-//      currencyCell.currencyRateLabel.text = String(format: "%f", cvm.rate)
-//      let locale = Locale.current
-//      currencyCell.currencyNameLabel.text = locale.localizedString(forCurrencyCode: cvm.code )
-//
-//    })
-//    DispatchQueue.main.async {
-//      self.currencyTableView.dataSource = self.dataSource
-//      self.currencyTableView.reloadData()
-//    }
-//  }
+extension CurrencyViewController: UITableViewDelegate {
 
+}
 
-    /*
-    // MARK: - Navigation
+extension CurrencyViewController: UITableViewDataSource {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return currencyData?.rates.count ?? 0
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as? CurrencyCell else {
+      return UITableViewCell()
     }
-    */
+    guard let currencies = currencyData?.rates else {
+      return UITableViewCell()
+    }
+    let key = Array(currencies)[indexPath.row].key
+    let value = String(format: "%p", Array(currencies)[indexPath.row].value)
+    cell.update(with: key, value: value)
+    return cell
+  }
 
 }

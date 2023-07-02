@@ -22,7 +22,7 @@ class RequestService {
             print(error)
           }
         }
-      }
+      }.resume()
     }
   }
 }

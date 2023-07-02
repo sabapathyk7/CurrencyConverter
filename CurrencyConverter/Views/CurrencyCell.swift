@@ -10,7 +10,7 @@ import UIKit
 class CurrencyCell: UITableViewCell {
 
   static let identifier = "CurrencyCell"
-  lazy var stackView: UIStackView = {
+  private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
 //    vstackView.alignment = .center
@@ -19,7 +19,7 @@ class CurrencyCell: UITableViewCell {
     return vstackView
   }()
 
-  lazy var currencyNameLabel: UILabel = {
+  private lazy var currencyNameLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
@@ -27,7 +27,7 @@ class CurrencyCell: UITableViewCell {
     label.textColor = .blue
     return label
   }()
-  lazy var currencyCodeLabel: UILabel = {
+  private lazy var currencyCodeLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
@@ -36,7 +36,7 @@ class CurrencyCell: UITableViewCell {
     return label
   }()
 
-  lazy var mainStackView: UIStackView = {
+  private lazy var mainStackView: UIStackView = {
     let hstackView = UIStackView()
     hstackView.axis = .horizontal
 //    hstackView.alignment = .center
@@ -45,7 +45,7 @@ class CurrencyCell: UITableViewCell {
     return hstackView
   }()
 
-  lazy var currencyRateLabel: UILabel = {
+  private lazy var currencyRateLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
@@ -64,7 +64,7 @@ class CurrencyCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setupUI(){
+  private func setupUI(){
   
     stackView.addArrangedSubview(currencyNameLabel)
     stackView.addArrangedSubview(currencyCodeLabel)
@@ -82,6 +82,11 @@ class CurrencyCell: UITableViewCell {
 
     currencyNameLabel.heightAnchor.constraint(equalToConstant: 140).isActive = true
     currencyNameLabel.widthAnchor.constraint(equalToConstant: 140).isActive = true
+  }
+
+  func update(with key: String, value: String) {
+    currencyCodeLabel.text = key
+    currencyRateLabel.text = value
   }
 
 //  var currency: Currency? {

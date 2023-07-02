@@ -89,14 +89,6 @@ class CurrencyCell: UITableViewCell {
     currencyRateLabel.text = value
   }
 
-//  var currency: Currency? {
-//    didSet {
-//      currencyCodeLabel.text = currency?.code
-//      currencyRateLabel.text = String(format: "%f", currency?.rate ?? "0.000")
-//      let locale = Locale.current
-//      currencyNameLabel.text = locale.localizedString(forCurrencyCode: currency?.code ?? "")
-//    }
-//  }
 
   override func awakeFromNib() {
     super.awakeFromNib()

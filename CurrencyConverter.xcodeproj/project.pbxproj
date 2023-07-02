@@ -19,7 +19,6 @@
 		A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207C2A49F2A400152584 /* CurrencyCell.swift */; };
 		A25B207F2A49F2B500152584 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207E2A49F2B500152584 /* Currency.swift */; };
 		A25B20832A4A124100152584 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20822A4A124100152584 /* CurrencyView.swift */; };
-		A2A5B2A32A4AE05500A633F0 /* CurrencyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5B2A22A4AE05500A633F0 /* CurrencyDataSource.swift */; };
 		A2B9A8332A51685000AC76DE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9A8322A51685000AC76DE /* FirstViewController.swift */; };
 		A2B9A8352A51685B00AC76DE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9A8342A51685B00AC76DE /* SecondViewController.swift */; };
 		A2B9A8382A516F8000AC76DE /* SomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9A8372A516F8000AC76DE /* SomeProtocol.swift */; };
@@ -60,7 +59,6 @@
 		A25B207C2A49F2A400152584 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		A25B207E2A49F2B500152584 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A25B20822A4A124100152584 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
-		A2A5B2A22A4AE05500A633F0 /* CurrencyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataSource.swift; sourceTree = "<group>"; };
 		A2B9A8322A51685000AC76DE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A2B9A8342A51685B00AC76DE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		A2B9A8372A516F8000AC76DE /* SomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeProtocol.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				A25B20782A49EF9300152584 /* CurrencyViewModel.swift */,
-				A2A5B2A22A4AE05500A633F0 /* CurrencyDataSource.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -336,7 +333,6 @@
 				A25B20832A4A124100152584 /* CurrencyView.swift in Sources */,
 				A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */,
 				A2B9A8332A51685000AC76DE /* FirstViewController.swift in Sources */,
-				A2A5B2A32A4AE05500A633F0 /* CurrencyDataSource.swift in Sources */,
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,
 				A25B207F2A49F2B500152584 /* Currency.swift in Sources */,
 				A25B207B2A49F28900152584 /* CurrencyViewController.swift in Sources */,

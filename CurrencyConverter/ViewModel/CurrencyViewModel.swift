@@ -7,10 +7,10 @@
 
 import Foundation
 
-class CurrencyViewModel: NSObject {
+class CurrencyViewModel {
 
-  private var apiService: RequestService!
-  private(set) var currencyData: [Currency]! {
+  private var apiService: RequestService?
+  private(set) var currencyData: CurrencyData? {
     didSet {
       self.bindCurrencyViewModelToController()
     }
@@ -18,16 +18,15 @@ class CurrencyViewModel: NSObject {
 
   var bindCurrencyViewModelToController: (() -> ()) = {}
 
-  override init() {
-    super.init()
+   init() {
     self.apiService = RequestService()
     callFetchCurrencyData()
   }
 
   func callFetchCurrencyData() {
-    self.apiService.fetchCurrencyData { (currencyData) in
-      self.currencyData = currencyData
-    }
+    self.apiService?.fetchCurrencyData { (currencyData) in
+    self.currencyData = currencyData
+    } 
   }
 
 }

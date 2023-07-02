@@ -65,11 +65,13 @@ class CurrencyCell: UITableViewCell {
   }
 
   func setupUI(){
+  
     stackView.addArrangedSubview(currencyNameLabel)
     stackView.addArrangedSubview(currencyCodeLabel)
 
     mainStackView.addArrangedSubview(currencyRateLabel)
     mainStackView.addArrangedSubview(stackView)
+    contentView.addSubview(stackView)
     contentView.addSubview(mainStackView)
 
     let safeArea = contentView.layoutMarginsGuide
@@ -80,19 +82,16 @@ class CurrencyCell: UITableViewCell {
 
     currencyNameLabel.heightAnchor.constraint(equalToConstant: 140).isActive = true
     currencyNameLabel.widthAnchor.constraint(equalToConstant: 140).isActive = true
-
-
-
   }
 
-  var currency: Currency? {
-    didSet {
-      currencyCodeLabel.text = currency?.code
-      currencyRateLabel.text = String(format: "%f", currency?.rate ?? "0.000")
-      let locale = Locale.current
-      currencyNameLabel.text = locale.localizedString(forCurrencyCode: currency?.code ?? "")
-    }
-  }
+//  var currency: Currency? {
+//    didSet {
+//      currencyCodeLabel.text = currency?.code
+//      currencyRateLabel.text = String(format: "%f", currency?.rate ?? "0.000")
+//      let locale = Locale.current
+//      currencyNameLabel.text = locale.localizedString(forCurrencyCode: currency?.code ?? "")
+//    }
+//  }
 
   override func awakeFromNib() {
     super.awakeFromNib()

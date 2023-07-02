@@ -9,22 +9,20 @@ import Foundation
 
 class RequestService {
 
-  private let apiURL = URL(string: "https://pastebin.com/raw/Nq1KvHjZ")!
+  private let apiURL = URL(string: "https://pastebin.com/raw/Nq1KvHjZ")
 
-  func fetchCurrencyData(completion: @escaping ([Currency]) -> ()){
-    URLSession.shared.dataTask(with: URLRequest.init(url: apiURL)) { data, response, error in
-      do {
-        if let dictionary = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: AnyObject] {
-          if let rates = dictionary["rates"] as? [String: Double] {
-            let finalRates:[Currency] = rates.compactMap({Currency(code: $0.key, rate: $0.value)})
-            completion(finalRates)
+  func fetchCurrencyData(completion: @escaping (CurrencyData) -> ()){
+    if let apiURL = apiURL {
+      URLSession.shared.dataTask(with: URLRequest.init(url: apiURL)) { data, response, error in
+        if let data = data {
+          do {
+            let currencyData = try JSONDecoder().decode(CurrencyData.self, from: data)
+            completion(currencyData)
+          } catch let error {
+            print(error)
           }
-        } else {
-          completion([])
         }
-      } catch {
-        completion([])
       }
-    }.resume()
+    }
   }
 }

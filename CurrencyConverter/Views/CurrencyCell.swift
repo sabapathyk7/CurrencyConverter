@@ -14,13 +14,8 @@ class CurrencyCell: UITableViewCell {
   private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
-//    vstackView.alignment = .center
     vstackView.distribution = .fill
-//    vstackView.spacing = 10
     vstackView.translatesAutoresizingMaskIntoConstraints = false
-//    vstackView.backgroundColor = .lightGray
-
-
     return vstackView
   }()
 
@@ -30,7 +25,6 @@ class CurrencyCell: UITableViewCell {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.backgroundColor = .lightGray
     label.setContentCompressionResistancePriority(.required, for: .horizontal)
     label.textColor = .blue
     return label
@@ -41,8 +35,6 @@ class CurrencyCell: UITableViewCell {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .blue
-//    label.backgroundColor = .red
-
     label.setContentHuggingPriority(.required, for: .horizontal)
     label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
@@ -52,9 +44,7 @@ class CurrencyCell: UITableViewCell {
     let hstackView = UIStackView()
     hstackView.translatesAutoresizingMaskIntoConstraints = false
     hstackView.axis = .horizontal
-//    hstackView.alignment = .center
     hstackView.distribution = .fill
-//    hstackView.spacing = 10
     return hstackView
   }()
 
@@ -64,8 +54,6 @@ class CurrencyCell: UITableViewCell {
     label.numberOfLines = 0
     label.textAlignment = .center
     label.textColor = .black
-//    label.backgroundColor = .blue
-
     return label
   }()
 
@@ -105,7 +93,6 @@ class CurrencyCell: UITableViewCell {
     currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
   }
 
-
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -116,6 +103,4 @@ class CurrencyCell: UITableViewCell {
 
     // Configure the view for the selected state
   }
-
-
 }

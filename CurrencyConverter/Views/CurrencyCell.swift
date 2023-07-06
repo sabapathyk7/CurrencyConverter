@@ -9,6 +9,7 @@ import UIKit
 
 class CurrencyCell: UITableViewCell {
 
+  private let locale = Locale.current
   static let identifier = "CurrencyCell"
   private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
@@ -16,6 +17,10 @@ class CurrencyCell: UITableViewCell {
 //    vstackView.alignment = .center
     vstackView.distribution = .fill
 //    vstackView.spacing = 10
+    vstackView.translatesAutoresizingMaskIntoConstraints = false
+//    vstackView.backgroundColor = .lightGray
+
+
     return vstackView
   }()
 
@@ -23,7 +28,10 @@ class CurrencyCell: UITableViewCell {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
-    label.textAlignment = .center
+    label.textAlignment = .left
+    label.setContentHuggingPriority(.required, for: .horizontal)
+//    label.backgroundColor = .lightGray
+    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     label.textColor = .blue
     return label
   }()
@@ -31,13 +39,18 @@ class CurrencyCell: UITableViewCell {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
-    label.textAlignment = .center
+    label.textAlignment = .left
     label.textColor = .blue
+//    label.backgroundColor = .red
+
+    label.setContentHuggingPriority(.required, for: .horizontal)
+    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
 
   private lazy var mainStackView: UIStackView = {
     let hstackView = UIStackView()
+    hstackView.translatesAutoresizingMaskIntoConstraints = false
     hstackView.axis = .horizontal
 //    hstackView.alignment = .center
     hstackView.distribution = .fill
@@ -50,7 +63,9 @@ class CurrencyCell: UITableViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
-    label.textColor = .blue
+    label.textColor = .black
+//    label.backgroundColor = .blue
+
     return label
   }()
 
@@ -68,25 +83,26 @@ class CurrencyCell: UITableViewCell {
   
     stackView.addArrangedSubview(currencyNameLabel)
     stackView.addArrangedSubview(currencyCodeLabel)
-
-    mainStackView.addArrangedSubview(currencyRateLabel)
-    mainStackView.addArrangedSubview(stackView)
     contentView.addSubview(stackView)
-    contentView.addSubview(mainStackView)
+    contentView.addSubview(currencyRateLabel)
 
     let safeArea = contentView.layoutMarginsGuide
-    mainStackView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-    mainStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
-    mainStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10).isActive = true
-    mainStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10).isActive = true
 
-    currencyNameLabel.heightAnchor.constraint(equalToConstant: 140).isActive = true
-    currencyNameLabel.widthAnchor.constraint(equalToConstant: 140).isActive = true
+    stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
+    stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
+    stackView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+    stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 1.0).isActive = true
+
+    currencyRateLabel.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 1.0).isActive = true
+    currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+
   }
 
   func update(with key: String, value: String) {
     currencyCodeLabel.text = key
     currencyRateLabel.text = value
+
+    currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
   }
 
 

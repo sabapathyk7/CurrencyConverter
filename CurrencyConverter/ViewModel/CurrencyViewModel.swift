@@ -15,7 +15,7 @@ struct CurrencyViewModel {
     self.apiService = RequestService()
   }
 
-  func callFetchCurrencyData(completion: @escaping (CurrencyData) -> ()){
+  func callFetchCurrencyData(completion: @escaping (CurrencyData) -> ()) {
     self.apiService?.fetchCurrencyData { (currencyData) in
       completion(currencyData)
     }

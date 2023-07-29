@@ -27,6 +27,7 @@ class CurrencyCell: UITableViewCell {
     label.textColor = .blue
     return label
   }()
+
   private lazy var currencyCodeLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,6 @@ class CurrencyCell: UITableViewCell {
     return label
   }()
 
-
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupUI()
@@ -64,8 +64,7 @@ class CurrencyCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private func setupUI(){
-  
+  private func setupUI() {
     stackView.addArrangedSubview(currencyNameLabel)
     stackView.addArrangedSubview(currencyCodeLabel)
 

@@ -9,9 +9,17 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
 
-  private let currencyViewModel:CurrencyViewModel = CurrencyViewModel()
-  private var currencyTableView: UITableView = UITableView()
-  private var currencyData:CurrencyData?
+  private let currencyViewModel: CurrencyViewModel = CurrencyViewModel()
+  private lazy var currencyTableView: UITableView = {
+    var tableView = UITableView()
+    let displayWidth: CGFloat = self.view.frame.width
+    let displayHeight: CGFloat = self.view.frame.height
+    tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+    tableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
+    view.addSubview(tableView)
+    return tableView
+  }()
+  private var currencyData: CurrencyData?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,7 +55,7 @@ extension CurrencyViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as? CurrencyCell else {
+  guard let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as? CurrencyCell else {
       return UITableViewCell()
     }
     guard let currencies = currencyData?.rates else {

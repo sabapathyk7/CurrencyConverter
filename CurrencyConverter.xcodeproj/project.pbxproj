@@ -19,6 +19,7 @@
 		A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207C2A49F2A400152584 /* CurrencyCell.swift */; };
 		A25B207F2A49F2B500152584 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207E2A49F2B500152584 /* Currency.swift */; };
 		A25B20832A4A124100152584 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20822A4A124100152584 /* CurrencyView.swift */; };
+		A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283D07A2A75024C006C5EAE /* UIView+Extension.swift */; };
 		A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D511A12A4CA64200A9549C /* RequestService.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		A25B207C2A49F2A400152584 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		A25B207E2A49F2B500152584 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A25B20822A4A124100152584 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
+		A283D07A2A75024C006C5EAE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A2D511A12A4CA64200A9549C /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		A25B20432A49EE3200152584 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				A283D0782A750212006C5EAE /* Extension */,
 				A2D511A02A4CA63200A9549C /* Services */,
 				A25B20772A49EF7C00152584 /* ViewModel */,
 				A25B20762A49EF7400152584 /* Controller */,
@@ -169,6 +172,14 @@
 				A25B20782A49EF9300152584 /* CurrencyViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A283D0782A750212006C5EAE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A283D07A2A75024C006C5EAE /* UIView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		A2D511A02A4CA63200A9549C /* Services */ = {
@@ -334,6 +345,7 @@
 				A25B20792A49EF9300152584 /* CurrencyViewModel.swift in Sources */,
 				A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */,
 				A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */,
+				A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */,
 				A25B20832A4A124100152584 /* CurrencyView.swift in Sources */,
 				A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */,
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,

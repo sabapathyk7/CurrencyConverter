@@ -8,12 +8,12 @@
 import Foundation
 
 // Active
-//https://pastebin.com/raw/Nq1KvHjZ
+// https://pastebin.com/raw/Nq1KvHjZ
 
-struct CurrencyData: Decodable {
+ struct CurrencyData: Decodable {
   let success: Bool
   let timestamp: Int
   let base: String
   let date: String
-  let rates: [String:Double]
-}
+  let rates: [String: Double]
+ }

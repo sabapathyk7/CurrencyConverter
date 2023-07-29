@@ -84,13 +84,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5380965CC00CDAD0438BBB96 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		A25B20382A49EE3200152584 = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +91,6 @@
 				A25B205A2A49EE3400152584 /* CurrencyConverterTests */,
 				A25B20642A49EE3400152584 /* CurrencyConverterUITests */,
 				A25B20422A49EE3200152584 /* Products */,
-				5380965CC00CDAD0438BBB96 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +189,7 @@
 				A25B203D2A49EE3200152584 /* Sources */,
 				A25B203E2A49EE3200152584 /* Frameworks */,
 				A25B203F2A49EE3200152584 /* Resources */,
+				A2D83E512A68278A00CD6F11 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -311,6 +304,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A2D83E512A68278A00CD6F11 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A25B203D2A49EE3200152584 /* Sources */ = {

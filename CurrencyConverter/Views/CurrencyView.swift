@@ -43,7 +43,7 @@ class CurrencyView: UIView {
     super.updateConstraints()
   }
 
-  override class var requiresConstraintBasedLayout: Bool{
+  override class var requiresConstraintBasedLayout: Bool {
     return true
   }
 }

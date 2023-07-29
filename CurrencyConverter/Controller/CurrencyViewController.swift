@@ -24,6 +24,11 @@ class CurrencyViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    let displayWidth: CGFloat = self.view.frame.width
+    let displayHeight: CGFloat = self.view.frame.height
+    currencyTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+    currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
+    self.view.addSubview(currencyTableView)
     currencyTableView.delegate = self
     currencyTableView.dataSource = self
     currencyViewModel.callFetchCurrencyData { currencyData in
@@ -57,7 +62,7 @@ extension CurrencyViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     let key = Array(currencies)[indexPath.row].key
-    let value = String(format: "%f", Array(currencies)[indexPath.row].value)
+    let value = String(format: "%p", Array(currencies)[indexPath.row].value)
     cell.update(with: key, value: value)
     return cell
   }

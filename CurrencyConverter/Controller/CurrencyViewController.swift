@@ -62,7 +62,7 @@ extension CurrencyViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     let key = Array(currencies)[indexPath.row].key
-    let value = String(format: "%p", Array(currencies)[indexPath.row].value)
+    let value = String(format: "%f", Array(currencies)[indexPath.row].value)
     cell.update(with: key, value: value)
     return cell
   }

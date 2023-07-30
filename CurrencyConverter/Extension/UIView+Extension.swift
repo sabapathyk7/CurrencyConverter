@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
 
   // Adding multiple subviews to the view
-  func addSubViews(_ views: UIView...){
+  func addSubViews(_ views: [UIView]) {
     for view in views {
       addSubview(view)
     }
@@ -36,7 +36,7 @@ extension UIView {
     }
   }
 
-  func pinToLayoutGuide(layoutGuide: UILayoutGuide, constant: CGFloat = 0) {
+  func pinToLayoutGuide(layoutGuide: UILayoutGuide, constant: CGFloat) {
     self.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: constant),

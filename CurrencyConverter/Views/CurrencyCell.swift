@@ -7,53 +7,50 @@
 
 import UIKit
 
-class CurrencyCell: UITableViewCell {
+class CurrencyCellView: UIView {
 
-  private let locale = Locale.current
-  static let identifier = "CurrencyCell"
-  private lazy var stackView: UIStackView = {
+  fileprivate lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
-
     vstackView.axis = .vertical
-//    vstackView.alignment = .center
-    vstackView.distribution = .fill
-//    vstackView.spacing = 10
+    vstackView.distribution = .fillEqually
     vstackView.backgroundColor = .red
+    vstackView.translatesAutoresizingMaskIntoConstraints = false
     return vstackView
   }()
 
-  private lazy var currencyNameLabel: UILabel = {
+  fileprivate lazy var currencyNameLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
 
-  private lazy var currencyCodeLabel: UILabel = {
+  fileprivate lazy var currencyCodeLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
-  private lazy var currencyRateLabel: UILabel = {
+
+  fileprivate lazy var currencyRateLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
     label.textColor = .blue
     label.backgroundColor = .gray
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
+}
+class CurrencyCell: UITableViewCell {
+
+  private let locale = Locale.current
+  static let identifier = "CurrencyCell"
+  private let currencyCellView = CurrencyCellView()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,44 +58,63 @@ class CurrencyCell: UITableViewCell {
   }
 
   required init?(coder: NSCoder) {
+    super.init(coder: coder)
     fatalError("init(coder:) has not been implemented")
   }
 
   private func setupUI() {
-    stackView.addArrangedSubview(currencyNameLabel)
-    stackView.addArrangedSubview(currencyCodeLabel)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    contentView.addSubViews([stackView, currencyRateLabel])
+
+    currencyCellView.stackView.addArrangedSubview(currencyCellView.currencyNameLabel)
+    currencyCellView.stackView.addArrangedSubview(currencyCellView.currencyCodeLabel)
+    contentView.addSubViews([currencyCellView.stackView, currencyCellView.currencyRateLabel])
+
 
     let safeArea = contentView.layoutMarginsGuide
-    stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
-    NSLayoutConstraint.deactivate([stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
-//    NSLayoutConstraint.activate([
-//      stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7),
-//      stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-//      stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-//      stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 1.0)
-//    ])
-    stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
+    currencyCellView.stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
+    NSLayoutConstraint.deactivate([currencyCellView.stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
+    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 1.0).isActive = true
+    currencyCellView.currencyRateLabel.leadingAnchor.constraint(equalTo: currencyCellView.stackView.trailingAnchor, constant: 1.0).isActive = true
+    currencyCellView.currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+  }
+  func update(with key: String, value: String) {
+    currencyCellView.currencyCodeLabel.text = key
+    currencyCellView.currencyRateLabel.text = value
+    currencyCellView.currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
+  }
+}
 
-    currencyRateLabel.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 1.0).isActive = true
-    currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+class CurrencyCollectionViewCell: UICollectionViewCell {
+
+  private let locale = Locale.current
+  static let identifier = "CurrencyCollectionViewCell"
+  private let currencyCellView = CurrencyCellView()
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupUI()
+  }
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func setupUI() {
+    contentView.backgroundColor = .blue
+    currencyCellView.stackView.addArrangedSubview(currencyCellView.currencyNameLabel)
+    currencyCellView.stackView.addArrangedSubview(currencyCellView.currencyCodeLabel)
+    contentView.addSubViews([currencyCellView.stackView, currencyCellView.currencyRateLabel])
+
+    let safeArea = contentView.layoutMarginsGuide
+    currencyCellView.stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
+    NSLayoutConstraint.deactivate([currencyCellView.stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
+    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5).isActive = true
+    currencyCellView.currencyRateLabel.leadingAnchor.constraint(equalTo: currencyCellView.stackView.trailingAnchor, constant: 1.0).isActive = true
+    currencyCellView.currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
   }
 
   func update(with key: String, value: String) {
-    currencyCodeLabel.text = key
-    currencyRateLabel.text = value
-    currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
-  }
-
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-
-    // Configure the view for the selected state
+    currencyCellView.currencyCodeLabel.text = key
+    currencyCellView.currencyRateLabel.text = value
+    currencyCellView.currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
   }
 }

@@ -10,6 +10,13 @@ import UIKit
 class CurrencyViewController: UIViewController {
 
   private let currencyViewModel: CurrencyViewModel = CurrencyViewModel()
+  private lazy var chcrLabelButtonView: CHCRLabelButtonView = {
+    var view = CHCRLabelButtonView()
+    let displayWidth: CGFloat = self.view.frame.width
+    let displayHeight: CGFloat = self.view.frame.height
+    view = CHCRLabelButtonView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+    return view
+  }()
   private lazy var currencyTableView: UITableView = {
     var tableView = UITableView()
     let displayWidth: CGFloat = self.view.frame.width
@@ -38,22 +45,17 @@ class CurrencyViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let displayWidth: CGFloat = self.view.frame.width
-    let displayHeight: CGFloat = self.view.frame.height
-    currencyTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
-    currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
 //    view.addSubview(currencyTableView)
 //    currencyTableView.delegate = self
 //    currencyTableView.dataSource = self
 
-    view.addSubview(currencyCollectionView)
-    currencyCollectionView.delegate = self
-    currencyCollectionView.dataSource = self
-    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
+    view.backgroundColor = .white
+    view.addSubview(chcrLabelButtonView)
 
-//    if let flowLayout = currencyCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//        flowLayout.scrollDirection = .horizontal
-//    }
+//    view.addSubview(currencyCollectionView)
+//    currencyCollectionView.delegate = self
+//    currencyCollectionView.dataSource = self
+//    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
     currencyViewModel.callFetchCurrencyData { currencyData in
       self.currencyData = currencyData
       DispatchQueue.main.async {

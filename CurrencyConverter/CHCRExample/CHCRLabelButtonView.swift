@@ -24,7 +24,7 @@ class CHCRLabelButtonView: UIView {
     label.textAlignment = .left
     label.textColor = .brown
     label.backgroundColor = .lightGray
-    label.text = "This is my Label"
+    label.text = "This is my new Label. Grow with me."
     return label
   }()
   fileprivate lazy var stackView: UIStackView = {
@@ -56,7 +56,7 @@ class CHCRLabelButtonView: UIView {
   private func setupLayout() {
     let safeArea = self.layoutMarginsGuide
 
-    /*
+    /* // -> Example of CH and CR
     newButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     newLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
@@ -74,6 +74,8 @@ class CHCRLabelButtonView: UIView {
     ])
      */
 
+    /*
+     // -> Example of Multiplier
     NSLayoutConstraint.activate([
       newLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
       newLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
@@ -88,6 +90,23 @@ class CHCRLabelButtonView: UIView {
       newButton.widthAnchor.constraint(equalTo: newLabel.widthAnchor, multiplier: 0.5),
       // Setting with multiplier for the label - 80% of heigth's width
       newButton.heightAnchor.constraint(equalTo: newLabel.heightAnchor, multiplier: 0.5)
+    ])
+     */
+
+    NSLayoutConstraint.activate([
+      // Leading and top anchors of the Label
+      newLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20),
+      newLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
+
+      // Leading align with newLabel
+      newButton.leadingAnchor.constraint(equalTo: newLabel.leadingAnchor),
+      // Trailing align with newLabel (20 points below)
+      newButton.trailingAnchor.constraint(equalTo: newLabel.trailingAnchor, constant: -20),
+
+      // below the newLabel
+      newButton.topAnchor.constraint(equalTo: newLabel.bottomAnchor, constant: 20),
+      // aligned with the bottom edges of the superview
+      newButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20)
     ])
   }
 }

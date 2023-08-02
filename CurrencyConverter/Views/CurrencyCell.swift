@@ -71,7 +71,7 @@ class CurrencyCell: UITableViewCell {
     let safeArea = contentView.layoutMarginsGuide
     currencyCellView.stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
     NSLayoutConstraint.deactivate([currencyCellView.stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
-    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 1.0).isActive = true
+    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
     currencyCellView.currencyRateLabel.leadingAnchor.constraint(equalTo: currencyCellView.stackView.trailingAnchor, constant: 1.0).isActive = true
     currencyCellView.currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
   }
@@ -106,7 +106,7 @@ class CurrencyCollectionViewCell: UICollectionViewCell {
     let safeArea = contentView.layoutMarginsGuide
     currencyCellView.stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
     NSLayoutConstraint.deactivate([currencyCellView.stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
-    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5).isActive = true
+    currencyCellView.stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
     currencyCellView.currencyRateLabel.leadingAnchor.constraint(equalTo: currencyCellView.stackView.trailingAnchor, constant: 1.0).isActive = true
     currencyCellView.currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
   }

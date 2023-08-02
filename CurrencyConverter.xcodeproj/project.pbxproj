@@ -20,7 +20,7 @@
 		A25B207F2A49F2B500152584 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207E2A49F2B500152584 /* Currency.swift */; };
 		A25B20832A4A124100152584 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20822A4A124100152584 /* CurrencyView.swift */; };
 		A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283D07A2A75024C006C5EAE /* UIView+Extension.swift */; };
-		A2BA57C62A7A487C00B28C84 /* CHCRViewButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA57C52A7A487C00B28C84 /* CHCRViewButtonView.swift */; };
+		A2BA57C62A7A487C00B28C84 /* CHCRLabelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA57C52A7A487C00B28C84 /* CHCRLabelButtonView.swift */; };
 		A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D511A12A4CA64200A9549C /* RequestService.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		A25B207E2A49F2B500152584 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		A25B20822A4A124100152584 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		A283D07A2A75024C006C5EAE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		A2BA57C52A7A487C00B28C84 /* CHCRViewButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCRViewButtonView.swift; sourceTree = "<group>"; };
+		A2BA57C52A7A487C00B28C84 /* CHCRLabelButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCRLabelButtonView.swift; sourceTree = "<group>"; };
 		A2D511A12A4CA64200A9549C /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,7 +188,7 @@
 		A2BA57C42A7A47E900B28C84 /* CHCRExample */ = {
 			isa = PBXGroup;
 			children = (
-				A2BA57C52A7A487C00B28C84 /* CHCRViewButtonView.swift */,
+				A2BA57C52A7A487C00B28C84 /* CHCRLabelButtonView.swift */,
 			);
 			path = CHCRExample;
 			sourceTree = "<group>";
@@ -362,7 +362,7 @@
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,
 				A25B207F2A49F2B500152584 /* Currency.swift in Sources */,
 				A25B207B2A49F28900152584 /* CurrencyViewController.swift in Sources */,
-				A2BA57C62A7A487C00B28C84 /* CHCRViewButtonView.swift in Sources */,
+				A2BA57C62A7A487C00B28C84 /* CHCRLabelButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,8 +12,8 @@ class CHCRLabelButtonView: UIView {
   lazy var newButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("Please press this Button ", for: .normal)
-    button.backgroundColor = .black
+    button.setTitle("This is New Button. Press Me", for: .normal)
+    button.backgroundColor = .yellow
     return button
   }()
 
@@ -22,7 +22,7 @@ class CHCRLabelButtonView: UIView {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 1
     label.textAlignment = .left
-    label.textColor = .black
+    label.textColor = .brown
     label.backgroundColor = .red
     label.text = "This is my Label"
     return label
@@ -45,16 +45,16 @@ class CHCRLabelButtonView: UIView {
     super.init(coder: coder)
   }
   private func setupView() {
-    backgroundColor = .blue
-    stackView.addArrangedSubview(newButton)
-    stackView.addArrangedSubview(newLabel)
-    addSubViews([stackView])
+    backgroundColor = .white
+//    stackView.addArrangedSubview(newButton)
+//    stackView.addArrangedSubview(newLabel)
+//    addSubViews([stackView])
+    addSubViews([newButton, newLabel])
     setupLayout()
   }
 
   private func setupLayout() {
     let safeArea = self.layoutMarginsGuide
-
     newButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     newLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
@@ -62,10 +62,12 @@ class CHCRLabelButtonView: UIView {
     newLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
     NSLayoutConstraint.activate([
-      stackView.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-      stackView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor)
+      newButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
+      newButton.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
+
+      newLabel.leadingAnchor.constraint(equalTo: newButton.trailingAnchor, constant: 5),
+      newLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+      newLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
     ])
-
   }
-
 }

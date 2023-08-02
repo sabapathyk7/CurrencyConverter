@@ -25,7 +25,7 @@ class CurrencyViewController: UIViewController {
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     layout.itemSize = CGSize(width: 100, height: 100)
-    layout.scrollDirection = .vertical
+    layout.scrollDirection = .horizontal
     var collectionView = UICollectionView(frame:
                                             CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight),
                                           collectionViewLayout: layout)
@@ -113,11 +113,11 @@ extension CurrencyViewController: UICollectionViewDelegate, UICollectionViewData
     cell.update(with: key, value: value)
     return cell
   }
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//    let widthDiv = 2.45
-//    let heightDiv = 5.55
-//    print("Width ", collectionView.frame.size.width, " Height ", collectionView.frame.size.height)
-//    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
-//    return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
-//  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let widthDiv = 1.0
+    let heightDiv = 4.0
+    print("Width ", collectionView.frame.size.width, " Height ", collectionView.frame.size.height)
+    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
+    return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
+  }
 }

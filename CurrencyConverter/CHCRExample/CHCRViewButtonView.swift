@@ -24,7 +24,4 @@ class CHCRViewButtonView: UIView {
     label.textColor = .black
     return label
   }()
-
-
-
 }

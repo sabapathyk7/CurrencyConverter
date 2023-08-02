@@ -8,17 +8,14 @@
 import UIKit
 
 extension UIView {
-
   // Adding multiple subviews to the view
   func addSubViews(_ views: [UIView]) {
     for view in views {
       addSubview(view)
     }
   }
-
   func pinToEdges(of superView: UIView, useSafeArea: Bool = false, constant: CGFloat = 0) {
     self.translatesAutoresizingMaskIntoConstraints = false
-
     if useSafeArea {
       NSLayoutConstraint.activate([
         leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: constant),
@@ -35,7 +32,6 @@ extension UIView {
       ])
     }
   }
-
   func pinToLayoutGuide(layoutGuide: UILayoutGuide, constant: CGFloat) {
     self.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([

@@ -68,7 +68,6 @@ class CurrencyCell: UITableViewCell {
     currencyCellView.stackView.addArrangedSubview(currencyCellView.currencyCodeLabel)
     contentView.addSubViews([currencyCellView.stackView, currencyCellView.currencyRateLabel])
 
-
     let safeArea = contentView.layoutMarginsGuide
     currencyCellView.stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
     NSLayoutConstraint.deactivate([currencyCellView.stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])

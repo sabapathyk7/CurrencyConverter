@@ -113,11 +113,10 @@ extension CurrencyViewController: UICollectionViewDelegate, UICollectionViewData
     cell.update(with: key, value: value)
     return cell
   }
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//    let widthDiv = 2.45
-//    let heightDiv = 5.55
-//    print("Width ", collectionView.frame.size.width, " Height ", collectionView.frame.size.height)
-//    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
-//    return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
-//  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let widthDiv = 1.0
+    let heightDiv = 4.0
+    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
+    return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
+  }
 }

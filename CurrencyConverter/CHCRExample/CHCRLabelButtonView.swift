@@ -12,8 +12,8 @@ class CHCRLabelButtonView: UIView {
   lazy var newButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
-    button.setTitle("This is New Button. Press Me", for: .normal)
-    button.backgroundColor = .yellow
+    button.setTitle("Press ME!", for: .normal)
+    button.backgroundColor = .red
     return button
   }()
 
@@ -23,7 +23,7 @@ class CHCRLabelButtonView: UIView {
     label.numberOfLines = 1
     label.textAlignment = .left
     label.textColor = .brown
-    label.backgroundColor = .red
+    label.backgroundColor = .lightGray
     label.text = "This is my Label"
     return label
   }()
@@ -55,6 +55,8 @@ class CHCRLabelButtonView: UIView {
 
   private func setupLayout() {
     let safeArea = self.layoutMarginsGuide
+
+    /*
     newButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     newLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
@@ -62,12 +64,30 @@ class CHCRLabelButtonView: UIView {
     newLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
     NSLayoutConstraint.activate([
+
       newButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 10),
       newButton.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
 
       newLabel.leadingAnchor.constraint(equalTo: newButton.trailingAnchor, constant: 5),
       newLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
       newLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
+    ])
+     */
+
+    NSLayoutConstraint.activate([
+      newLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
+      newLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+      // Setting with multiplier for the label - 50% of view's width
+      newLabel.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.5)
+    ])
+
+    NSLayoutConstraint.activate([
+      newButton.centerXAnchor.constraint(equalTo: newLabel.centerXAnchor),
+      newButton.centerYAnchor.constraint(equalTo: newLabel.centerYAnchor, constant: 50),
+      // Setting with multiplier for the label - 50% of label's width
+      newButton.widthAnchor.constraint(equalTo: newLabel.widthAnchor, multiplier: 0.5),
+      // Setting with multiplier for the label - 80% of heigth's width
+      newButton.heightAnchor.constraint(equalTo: newLabel.heightAnchor, multiplier: 0.5)
     ])
   }
 }

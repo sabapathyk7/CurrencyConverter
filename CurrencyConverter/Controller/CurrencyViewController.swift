@@ -37,12 +37,9 @@ class CurrencyViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    let displayWidth: CGFloat = self.view.frame.width
-    let displayHeight: CGFloat = self.view.frame.height
-    currencyTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
     currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
 //    view.addSubview(currencyTableView)
+//    currencyTableView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 0)
 //    currencyTableView.delegate = self
 //    currencyTableView.dataSource = self
 
@@ -50,14 +47,11 @@ class CurrencyViewController: UIViewController {
     currencyCollectionView.delegate = self
     currencyCollectionView.dataSource = self
     currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
-
-//    if let flowLayout = currencyCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//        flowLayout.scrollDirection = .horizontal
-//    }
     currencyViewModel.callFetchCurrencyData { currencyData in
       self.currencyData = currencyData
       DispatchQueue.main.async {
         self.currencyTableView.reloadData()
+        self.currencyCollectionView.reloadData()
       }
     }
   }
@@ -116,8 +110,6 @@ extension CurrencyViewController: UICollectionViewDelegate, UICollectionViewData
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let widthDiv = 1.0
     let heightDiv = 4.0
-    print("Width ", collectionView.frame.size.width, " Height ", collectionView.frame.size.height)
-    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
     return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
   }
 }

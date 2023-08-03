@@ -32,7 +32,7 @@ class CurrencyViewController: UIViewController {
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     layout.itemSize = CGSize(width: 100, height: 100)
-    layout.scrollDirection = .vertical
+    layout.scrollDirection = .horizontal
     var collectionView = UICollectionView(frame:
                                             CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight),
                                           collectionViewLayout: layout)
@@ -45,21 +45,23 @@ class CurrencyViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-//    view.addSubview(currencyTableView)
-//    currencyTableView.delegate = self
-//    currencyTableView.dataSource = self
+    view.addSubview(currencyTableView)
+    currencyTableView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 0)
+    currencyTableView.delegate = self
+    currencyTableView.dataSource = self
 
-    view.backgroundColor = .white
-    view.addSubview(chcrLabelButtonView)
+//    view.backgroundColor = .white
+//    view.addSubview(chcrLabelButtonView)
 
 //    view.addSubview(currencyCollectionView)
+//    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
 //    currencyCollectionView.delegate = self
 //    currencyCollectionView.dataSource = self
-//    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
     currencyViewModel.callFetchCurrencyData { currencyData in
       self.currencyData = currencyData
       DispatchQueue.main.async {
         self.currencyTableView.reloadData()
+        self.currencyCollectionView.reloadData()
       }
     }
   }
@@ -118,7 +120,6 @@ extension CurrencyViewController: UICollectionViewDelegate, UICollectionViewData
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let widthDiv = 1.0
     let heightDiv = 4.0
-    print(widthDiv, collectionView.frame.size.width/widthDiv, heightDiv, collectionView.frame.size.height/heightDiv)
     return CGSize(width: collectionView.frame.size.width/widthDiv, height: collectionView.frame.size.height/heightDiv)
   }
 }

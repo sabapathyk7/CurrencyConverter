@@ -17,11 +17,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
+    guard let window = window as UIWindow? else {
+      window?.makeKeyAndVisible()
+      return
+    }
+    rootViewSwiftUI(window: window)
+//    rootViewUIKit(window: window)
+  }
+
+  func rootViewUIKit(window: UIWindow) {
     let viewController = CurrencyViewController()
-//    let firstVC = FirstViewController()
-//    let navigationController = UINavigationController(rootViewController: firstVC)
-    window?.rootViewController = viewController
-    window?.makeKeyAndVisible()
+    window.rootViewController = viewController
+    window.makeKeyAndVisible()
+  }
+  func rootViewSwiftUI(window: UIWindow) {
+    let viewController = CurrencySwiftUIViewController()
+    window.rootViewController = viewController
+    window.makeKeyAndVisible()
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

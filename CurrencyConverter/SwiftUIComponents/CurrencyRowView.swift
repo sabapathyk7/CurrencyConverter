@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct CurrencyRowView: View {
-  @State var tableViewData: TableViewData?
+  @State var tableViewData: TableViewData
     var body: some View {
       HStack {
         VStack {
-          Text(tableViewData?.currencyName ?? "Indian Rupee")
-          Text(tableViewData?.currencyName ?? "INR")
+          Text(tableViewData.currencyName )
+          Text(tableViewData.currencyName )
         }
-        Text(String(tableViewData?.currencyValue ?? 56.0000))
+        Text(String(tableViewData.currencyValue ))
       }
     }
 }
 
 struct CurrencyRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrencyRowView()
+      let tableViewData = TableViewData(currencyName: "Name", currencyValue: 10.222)
+        CurrencyRowView(tableViewData: tableViewData)
     }
 }

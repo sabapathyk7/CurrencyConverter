@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct CurrencyListView: View {
-  @State var tableViewData = [TableViewData]()
+    @State var tableViewData: [TableViewData]
     var body: some View {
       List {
-        ForEach(0..<tableViewData.count) {value in
-          let data = tableViewData[value]
-          CurrencyRowView(tableViewData: data)
+          ForEach(tableViewData, id: \.id) { data in
+            CurrencyRowView(tableViewData: data)
         }
       }
     }
 }
 
 struct CurrencyListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyListView()
-    }
+static var previews: some View {
+      let tableViewData = TableViewData(currencyName: "name", currencyValue: 100.00399)
+      let arrayOfTableViewData = [tableViewData, tableViewData]
+      CurrencyListView(tableViewData: arrayOfTableViewData)
+  }
 }

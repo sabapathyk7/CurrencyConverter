@@ -30,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window.rootViewController = viewController
     window.makeKeyAndVisible()
   }
+
   func rootViewSwiftUI(window: UIWindow) {
     let viewController = CurrencySwiftUIViewController()
     window.rootViewController = viewController

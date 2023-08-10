@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+
 struct CurrencySwiftUIView: View {
   @State private var amount: String = ""
+  @ObservedObject var viewModel = CurrencyViewModel()
     var body: some View {
       VStack {
         HStack {
@@ -15,8 +17,8 @@ struct CurrencySwiftUIView: View {
           Button("INR") {
           }
         }
-        CurrencyListView()
-      }
+        CurrencyListView(tableViewData: viewModel.arrayOfTableViewData)
+      }.onAppear(perform: viewModel.someFunc)
     }
 }
 

@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct CurrencyViewModel {
-
+@MainActor
+class CurrencyViewModel: ObservableObject {
   private var apiService: RequestService?
+  @Published var arrayOfTableViewData: [TableViewData] = [TableViewData]()
 
    init() {
     self.apiService = RequestService()
@@ -23,6 +24,17 @@ struct CurrencyViewModel {
         arrayOfTableViewData.append(tableViewData)
       }
       completion(arrayOfTableViewData)
+    }
+  }
+
+  func someFunc() {
+    self.apiService?.fetchCurrencyData { (currencyData) in
+      var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+      for (key, value) in currencyData.rates {
+        let tableViewData = TableViewData(currencyName: key, currencyValue: value)
+        arrayOfTableViewData.append(tableViewData)
+      }
+      self.arrayOfTableViewData = arrayOfTableViewData
     }
   }
 }

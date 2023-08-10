@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct CurrencyRowView: View {
+  @State var tableViewData: TableViewData?
     var body: some View {
       HStack {
         VStack {
-          Text("Singapore Dollar")
-          Text("AED")
+          Text(tableViewData?.currencyName ?? "Indian Rupee")
+          Text(tableViewData?.currencyName ?? "INR")
         }
-        Text(String(5.323243324))
+        Text(String(tableViewData?.currencyValue ?? 56.0000))
       }
     }
 }

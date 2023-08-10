@@ -54,7 +54,6 @@ class CurrencyViewController: UIViewController {
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
     view.addSubViews([searchBar, dropDownView, currencyTableView])
-    
     searchBar.anchor(top: view.margingTop, leading: view.marginLeading,
                      bottom: nil,
                      trailing: view.marginTrailing,
@@ -85,7 +84,6 @@ class CurrencyViewController: UIViewController {
      */
 
     searchBar.delegate = self
-    
     currencyViewModel.callFetchCurrencyData { currencyData in
       self.currenciesArray = currencyData.sorted { tableViewData1, tableViewData2 in
         let currencyName1 = tableViewData1.currencyName

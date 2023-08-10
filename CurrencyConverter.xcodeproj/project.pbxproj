@@ -22,6 +22,7 @@
 		A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F52A854E19003FC29F /* CurrencySwiftUIView.swift */; };
 		A26CC0F82A854E8A003FC29F /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */; };
 		A26CC0FA2A854EB8003FC29F /* CurrencyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */; };
+		A26CC0FC2A8550AB003FC29F /* CurrencySwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */; };
 		A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283D07A2A75024C006C5EAE /* UIView+Extension.swift */; };
 		A2B44C2E2A82C2E000679367 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */; };
 		A2B44C302A82C68600679367 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B44C2F2A82C68600679367 /* DropDownView.swift */; };
@@ -65,6 +66,7 @@
 		A26CC0F52A854E19003FC29F /* CurrencySwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySwiftUIView.swift; sourceTree = "<group>"; };
 		A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRowView.swift; sourceTree = "<group>"; };
+		A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySwiftUIViewController.swift; sourceTree = "<group>"; };
 		A283D07A2A75024C006C5EAE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		A2B44C2F2A82C68600679367 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A25B207A2A49F28900152584 /* CurrencyViewController.swift */,
+				A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				A2B44C302A82C68600679367 /* DropDownView.swift in Sources */,
 				A25B20792A49EF9300152584 /* CurrencyViewModel.swift in Sources */,
 				A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */,
+				A26CC0FC2A8550AB003FC29F /* CurrencySwiftUIViewController.swift in Sources */,
 				A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */,
 				A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */,
 				A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */,

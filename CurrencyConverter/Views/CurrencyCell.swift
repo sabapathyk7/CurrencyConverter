@@ -13,7 +13,7 @@ class CurrencyCellView: UIView {
   private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
-    vstackView.distribution = .fillEqually
+    vstackView.distribution = .fillProportionally
     vstackView.backgroundColor = .red
     vstackView.translatesAutoresizingMaskIntoConstraints = false
     return vstackView
@@ -61,17 +61,19 @@ class CurrencyCellView: UIView {
     stackView.addArrangedSubview(currencyCodeLabel)
     self.addSubViews([stackView, currencyRateLabel])
 
-    let safeArea = self.layoutMarginsGuide
-    stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
-    NSLayoutConstraint.deactivate([stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
-    stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
-    currencyRateLabel.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 1.0).isActive = true
-    currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+    stackView.anchor(top: self.margingTop, leading: self.marginLeading,
+                     bottom: self.marginBottom, trailing: nil,
+                     inset: UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 0))
+    stackView.anchorDimension(width: self.marginWidth, height: nil, inset: UIEdgeInsets(top: 0, left: 0.7, bottom: 0, right: 0.0))
+    currencyRateLabel.anchorCenter(centerX: nil, centerY: self.marginCenterY)
+    currencyRateLabel.anchor(top: nil, leading: stackView.marginTrailing,
+                             bottom: nil, trailing: nil,
+                             inset: UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 0))
   }
-  fileprivate func update(with key: String, value: String) {
-    currencyCodeLabel.text = key
-    currencyRateLabel.text = value
-    currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
+  fileprivate func update(with model: TableViewData) {
+    currencyCodeLabel.text = model.currencyName
+    currencyRateLabel.text = String(format: "%f", model.currencyValue)
+    currencyNameLabel.text = locale.localizedString(forCurrencyCode: model.currencyName)
   }
 }
 class CurrencyCell: UITableViewCell {
@@ -89,8 +91,8 @@ class CurrencyCell: UITableViewCell {
     super.init(coder: coder)
     fatalError("init(coder:) has not been implemented")
   }
-  func update(with key: String, value: String) {
-    currencyCellView.update(with: key, value: value)
+  func update(with model: TableViewData) {
+    currencyCellView.update(with: model)
   }
 }
 
@@ -110,7 +112,7 @@ class CurrencyCollectionViewCell: UICollectionViewCell {
     super.init(coder: coder)
     fatalError("init(coder:) has not been implemented")
   }
-  func update(with key: String, value: String) {
-    currencyCellView.update(with: key, value: value)
+  func update(with model: TableViewData) {
+    currencyCellView.update(with: model)
   }
 }

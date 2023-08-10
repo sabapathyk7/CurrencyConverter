@@ -7,18 +7,15 @@
 
 import UIKit
 
-class CurrencyCell: UITableViewCell {
+class CurrencyCellView: UIView {
 
   private let locale = Locale.current
-  static let identifier = "CurrencyCell"
   private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
-
     vstackView.axis = .vertical
-//    vstackView.alignment = .center
-    vstackView.distribution = .fill
-//    vstackView.spacing = 10
+    vstackView.distribution = .fillProportionally
     vstackView.backgroundColor = .red
+    vstackView.translatesAutoresizingMaskIntoConstraints = false
     return vstackView
   }()
 
@@ -28,8 +25,6 @@ class CurrencyCell: UITableViewCell {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
 
@@ -39,10 +34,9 @@ class CurrencyCell: UITableViewCell {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
+
   private lazy var currencyRateLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,55 +44,75 @@ class CurrencyCell: UITableViewCell {
     label.textAlignment = .center
     label.textColor = .blue
     label.backgroundColor = .gray
-//    label.setContentHuggingPriority(.required, for: .horizontal)
-//    label.setContentCompressionResistancePriority(.required, for: .horizontal)
     return label
   }()
 
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
+  init() {
+    super.init(frame: CGRect.zero)
+    self.backgroundColor = .blue
+    self.translatesAutoresizingMaskIntoConstraints = false
     setupUI()
   }
-
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: coder)
   }
-
   private func setupUI() {
     stackView.addArrangedSubview(currencyNameLabel)
     stackView.addArrangedSubview(currencyCodeLabel)
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    contentView.addSubViews([stackView, currencyRateLabel])
+    self.addSubViews([stackView, currencyRateLabel])
 
-    let safeArea = contentView.layoutMarginsGuide
-    stackView.pinToLayoutGuide(layoutGuide: safeArea, constant: 1.0)
-    NSLayoutConstraint.deactivate([stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -1.0)])
-//    NSLayoutConstraint.activate([
-//      stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7),
-//      stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-//      stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-//      stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 1.0)
-//    ])
-    stackView.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.7).isActive = true
-
-    currencyRateLabel.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 1.0).isActive = true
-    currencyRateLabel.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+    stackView.anchor(top: self.margingTop, leading: self.marginLeading,
+                     bottom: self.marginBottom, trailing: nil,
+                     inset: UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 0))
+    stackView.anchorDimension(width: self.marginWidth, height: nil, inset: UIEdgeInsets(top: 0, left: 0.7, bottom: 0, right: 0.0))
+    currencyRateLabel.anchorCenter(centerX: nil, centerY: self.marginCenterY)
+    currencyRateLabel.anchor(top: nil, leading: stackView.marginTrailing,
+                             bottom: nil, trailing: nil,
+                             inset: UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 0))
   }
-
-  func update(with key: String, value: String) {
-    currencyCodeLabel.text = key
-    currencyRateLabel.text = value
-    currencyNameLabel.text = locale.localizedString(forCurrencyCode: key)
+  fileprivate func update(with model: TableViewData) {
+    currencyCodeLabel.text = model.currencyName
+    currencyRateLabel.text = String(format: "%f", model.currencyValue)
+    currencyNameLabel.text = locale.localizedString(forCurrencyCode: model.currencyName)
   }
+}
+class CurrencyCell: UITableViewCell {
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
+  static let identifier = "CurrencyCell"
+  private var currencyCellView = CurrencyCellView()
+
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    self.currencyCellView = CurrencyCellView()
+    contentView.addSubview(currencyCellView)
+    currencyCellView.pinToLayoutGuide(layoutGuide: contentView.layoutMarginsGuide, constant: 0)
   }
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    fatalError("init(coder:) has not been implemented")
+  }
+  func update(with model: TableViewData) {
+    currencyCellView.update(with: model)
+  }
+}
 
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
+class CurrencyCollectionViewCell: UICollectionViewCell {
 
-    // Configure the view for the selected state
+  private let locale = Locale.current
+  static let identifier = "CurrencyCollectionViewCell"
+  private var currencyCellView = CurrencyCellView()
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.currencyCellView = CurrencyCellView()
+    contentView.addSubview(currencyCellView)
+    currencyCellView.pinToLayoutGuide(layoutGuide: contentView.layoutMarginsGuide, constant: 10)
+  }
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    fatalError("init(coder:) has not been implemented")
+  }
+  func update(with model: TableViewData) {
+    currencyCellView.update(with: model)
   }
 }

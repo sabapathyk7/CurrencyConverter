@@ -17,3 +17,8 @@ import Foundation
   let date: String
   let rates: [String: Double]
  }
+
+struct TableViewData {
+  let currencyName: String
+  let currencyValue: Double
+}

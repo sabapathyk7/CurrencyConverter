@@ -15,10 +15,14 @@ struct CurrencyViewModel {
     self.apiService = RequestService()
   }
 
-  func callFetchCurrencyData(completion: @escaping (CurrencyData) -> ()) {
+  func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> ()) {
     self.apiService?.fetchCurrencyData { (currencyData) in
-      completion(currencyData)
+      var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+      for (key, value) in currencyData.rates {
+        let tableViewData = TableViewData(currencyName: key, currencyValue: value)
+        arrayOfTableViewData.append(tableViewData)
+      }
+      completion(arrayOfTableViewData)
     }
   }
-
 }

@@ -18,7 +18,9 @@ struct CurrencySwiftUIView: View {
           }
         }
         CurrencyListView(tableViewData: viewModel.arrayOfTableViewData)
-      }.onAppear(perform: viewModel.someFunc)
+      }.onAppear{
+       await viewModel.someFunc()
+      }
     }
 }
 

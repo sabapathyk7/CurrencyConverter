@@ -27,14 +27,16 @@ class CurrencyViewModel: ObservableObject {
     }
   }
 
-  func someFunc() {
-    self.apiService?.fetchCurrencyData { (currencyData) in
-      var arrayOfTableViewData: [TableViewData] = [TableViewData]()
-      for (key, value) in currencyData.rates {
-        let tableViewData = TableViewData(currencyName: key, currencyValue: value)
-        arrayOfTableViewData.append(tableViewData)
+  func someFunc() async -> [TableViewData] {
+    return await withCheckedContinuation { continuation in
+      self.apiService?.fetchCurrencyData { (currencyData) in
+        var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+        for (key, value) in currencyData.rates {
+          let tableViewData = TableViewData(currencyName: key, currencyValue: value)
+          arrayOfTableViewData.append(tableViewData)
+        }
       }
-      self.arrayOfTableViewData = arrayOfTableViewData
+      continuation.resume(returning: arrayOfTableViewData)
     }
   }
 }

@@ -19,6 +19,7 @@ import Foundation
  }
 
 struct TableViewData {
-  let currencyName: String
-  let currencyValue: Double
+    let id = UUID()
+  var currencyName: String
+  var currencyValue: Double
 }

@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
+
 struct CurrencySwiftUIView: View {
-  @State private var amount: String = ""
+    @State private var amount: String = ""
+    @State private var atableViewData = [TableViewData]()
+    @ObservedObject var viewModel = CurrencyViewModel()
+
     var body: some View {
-      VStack {
-        HStack {
-          TextField("Enter text", text: $amount)
-          Button("INR") {
-          }
+        VStack {
+            HStack {
+                TextField("Enter text", text: $amount)
+                Button("INR") {}
+            }
+            if atableViewData.count > 1 {
+                CurrencyListView(tableViewData: atableViewData)
+            }
+        }.onAppear {
+            Task {
+              atableViewData = await viewModel.callFetchCurrencyDataSwiftUI()
+            }
         }
-        CurrencyListView()
-      }
     }
 }
 

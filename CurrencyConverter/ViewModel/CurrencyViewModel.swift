@@ -27,15 +27,22 @@ class CurrencyViewModel: ObservableObject {
         }
     }
 
-    func callFetchCurrencyDataSwiftUI() async -> [TableViewData] {
+    func callFetchCurrencyDataSwiftUI() async -> ([TableViewData], [String]) {
         return await withCheckedContinuation({ continuation in
             self.apiService?.fetchCurrencyData { (currencyData) in
-                var arrayOfTableViewData2: [TableViewData] = [TableViewData]()
+              var arrayOfTableViewDataLocal: [TableViewData] = [TableViewData]()
+              var arrayOfCurrencyNames: [String] = [String]()
                 for (key, value) in currencyData.rates {
                     let tableViewData = TableViewData(currencyName: key, currencyValue: value)
-                    arrayOfTableViewData2.append(tableViewData)
+                  arrayOfTableViewDataLocal.append(tableViewData)
+                  arrayOfCurrencyNames.append(key)
                 }
-                continuation.resume(returning: arrayOfTableViewData2)
+              arrayOfTableViewDataLocal = arrayOfTableViewDataLocal.sorted(by: { aTableViewData, bTableViewData in
+                let aCurrencyName = aTableViewData.currencyName
+                let bCurrencyName = bTableViewData.currencyName
+                return (aCurrencyName.localizedCaseInsensitiveCompare(bCurrencyName) == .orderedAscending)
+              })
+              continuation.resume(returning: (arrayOfTableViewDataLocal, arrayOfCurrencyNames.sorted()))
             }
         })
     }

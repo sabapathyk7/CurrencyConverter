@@ -30,7 +30,7 @@ struct CurrencyListView: View {
                 Button(action: {
                   if tableViewData.first(where: { $0.currencyName.prefix(1) == letter }) != nil {
                     withAnimation {
-                      scrollProxy.scrollTo(letter)
+                      scrollProxy.scrollTo(letter, anchor: .center)
                     }
                   }
                 }, label: {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrencyListView: View {
     @State var tableViewData: [TableViewData]
+
     var body: some View {
       List {
           ForEach(tableViewData, id: \.id) { data in

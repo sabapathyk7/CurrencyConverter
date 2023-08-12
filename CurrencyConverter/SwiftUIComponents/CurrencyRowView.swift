@@ -9,14 +9,17 @@ import SwiftUI
 
 struct CurrencyRowView: View {
   @State var tableViewData: TableViewData
-    var body: some View {
-      HStack {
-        VStack {
-          Text(tableViewData.currencyName )
-          Text(tableViewData.currencyName )
+  
+  var body: some View {
+      HStack(alignment: .bottom) {
+        VStack(alignment: .leading) {
+          let locale = Locale.current
+          Text(locale.localizedString(forCurrencyCode: tableViewData.currencyName) ?? "Indian Rupee" ).font(.caption)
+          Text(tableViewData.currencyName).font(.subheadline).bold()
         }
-        Text(String(tableViewData.currencyValue ))
-      }
+        Spacer()
+        Text(String(tableViewData.currencyValue)).font(.headline)
+      }.padding()
     }
 }
 

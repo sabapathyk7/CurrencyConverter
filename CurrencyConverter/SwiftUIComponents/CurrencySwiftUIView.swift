@@ -11,13 +11,13 @@ struct CurrencySwiftUIView: View {
     @State private var amount: String = ""
     @State private var atableViewData = [TableViewData]()
     @ObservedObject var viewModel = CurrencyViewModel()
-
     var body: some View {
         VStack {
             HStack {
                 TextField("Enter text", text: $amount)
                 Button("INR") {}
-            }
+            }.textFieldStyle(.roundedBorder).padding()
+            Spacer()
             if atableViewData.count > 1 {
                 CurrencyListView(tableViewData: atableViewData)
             }

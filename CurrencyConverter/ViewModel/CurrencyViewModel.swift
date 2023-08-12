@@ -16,7 +16,7 @@ class CurrencyViewModel: ObservableObject {
         self.apiService = RequestService()
     }
 
-    func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> ()) {
+    func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> Void) {
         self.apiService?.fetchCurrencyData { (currencyData) in
             var arrayOfTableViewData: [TableViewData] = [TableViewData]()
             for (key, value) in currencyData.rates {

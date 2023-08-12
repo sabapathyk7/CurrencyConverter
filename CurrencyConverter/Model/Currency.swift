@@ -18,8 +18,8 @@ import Foundation
   let rates: [String: Double]
  }
 
-struct TableViewData {
-    let id = UUID()
+struct TableViewData: Identifiable {
+  let id = UUID()
   var currencyName: String
   var currencyValue: Double
 }

@@ -37,8 +37,56 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
             endingLineNumber = "120"
-            landmarkName = "CurrencyViewController"
-            landmarkType = "21">
+            landmarkName = "tableView(_:sectionForSectionIndexTitle:at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA66CAF7-BB39-4CA3-81E4-2407A3912A88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/SwiftUIComponents/CurrencyListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "EA66CAF7-BB39-4CA3-81E4-2407A3912A88 - 3ba03b8651207068"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CurrencyConverter.CurrencyListView.body.getter : some"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kannan/CurrencyConverter/CurrencyConverter/SwiftUIComponents/CurrencyListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "EA66CAF7-BB39-4CA3-81E4-2407A3912A88 - 65dd716169edfede"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;(Swift.String, Swift.Array&lt;CurrencyConverter.TableViewData&gt;)&gt;, Swift.String, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;CurrencyConverter.TableViewData&gt;, Foundation.UUID, CurrencyConverter.CurrencyRowView&gt;, SwiftUI.EmptyView&gt;&gt; in CurrencyConverter.CurrencyListView.body.getter : some"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kannan/CurrencyConverter/CurrencyConverter/SwiftUIComponents/CurrencyListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

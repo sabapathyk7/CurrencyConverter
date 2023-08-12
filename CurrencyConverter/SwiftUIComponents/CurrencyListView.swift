@@ -12,11 +12,20 @@ struct CurrencyListView: View {
 
     var body: some View {
       List {
-          ForEach(tableViewData, id: \.id) { data in
-            CurrencyRowView(tableViewData: data)
+        ForEach(groupByCurrency(tableViewData), id: \.0) { pair in
+          Section(header: Text(pair.0)) {
+            ForEach(pair.1) { data in
+              CurrencyRowView(tableViewData: data)
+            }
+          }
         }
-      }
+      }.listStyle(.grouped)
     }
+
+  func groupByCurrency(_ tableViewData: [TableViewData]) -> [(String, [TableViewData])] {
+    let grouped = Dictionary(grouping: tableViewData, by: {String($0.currencyName.prefix(1))})
+    return grouped.sorted(by: {$0.key < $1.key})
+  }
 }
 
 struct CurrencyListView_Previews: PreviewProvider {

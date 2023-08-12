@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CurrencyRowView: View {
   @State var tableViewData: TableViewData
-  
   var body: some View {
       HStack(alignment: .bottom) {
         VStack(alignment: .leading) {

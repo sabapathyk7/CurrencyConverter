@@ -12,6 +12,7 @@ class DropdownTableViewCell: UITableViewCell {
   static let identifier = "DropdownTableViewCell"
   lazy var label: UILabel = {
     let label = UILabel()
+    label.font = UIFont(name: "Helvetica", size: 10.0)
     return label
   }()
 

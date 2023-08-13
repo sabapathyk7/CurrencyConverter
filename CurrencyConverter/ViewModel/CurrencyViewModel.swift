@@ -16,14 +16,21 @@ class CurrencyViewModel: ObservableObject {
         self.apiService = RequestService()
     }
 
-    func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> Void) {
+    func callFetchCurrencyData(completion: @escaping ([TableViewData], [String]) -> Void) {
         self.apiService?.fetchCurrencyData { (currencyData) in
+            var arrayOfCurrencyNames: [String] = [String]()
             var arrayOfTableViewData: [TableViewData] = [TableViewData]()
             for (key, value) in currencyData.rates {
                 let tableViewData = TableViewData(currencyName: key, currencyValue: value)
                 arrayOfTableViewData.append(tableViewData)
+                arrayOfCurrencyNames.append(key)
             }
-            completion(arrayOfTableViewData)
+          arrayOfTableViewData = arrayOfTableViewData.sorted(by: { aTableViewData, bTableViewData in
+            let aCurrencyName = aTableViewData.currencyName
+            let bCurrencyName = bTableViewData.currencyName
+            return (aCurrencyName.localizedCaseInsensitiveCompare(bCurrencyName) == .orderedAscending)
+          })
+          completion(arrayOfTableViewData, arrayOfCurrencyNames)
         }
     }
 

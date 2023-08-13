@@ -53,27 +53,30 @@ class CurrencyViewController: UIViewController {
     currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .white
+//    dropDownView.backgroundColor = .red
+//    searchBar.backgroundColor = .green
+//    currencyTableView.backgroundColor = .brown
     view.addSubViews([searchBar, dropDownView, currencyTableView])
     searchBar.anchor(top: view.margingTop, leading: view.marginLeading,
                      bottom: nil,
-                     trailing: view.marginTrailing,
+                     trailing: dropDownView.marginLeading,
                      inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    dropDownView.anchor(top: searchBar.marginBottom, leading: view.marginLeading,
-                          bottom: currencyTableView.topAnchor,
+    dropDownView.anchor(top: view.margingTop, leading: dropDownView.marginTrailing,
+                        bottom: nil,
                           trailing: view.marginTrailing,
                           inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    currencyTableView.anchor(top: dropDownView.marginBottom, leading: view.marginLeading,
+    dropDownView.marginWidth.constraint(equalToConstant: 60.0).isActive = true
+    currencyTableView.anchor(top: searchBar.marginBottom, leading: view.marginLeading,
                              bottom: view.marginBottom, trailing: view.marginTrailing,
-                             inset: UIEdgeInsets(top: 10.0, left: 0, bottom: 0, right: 0))
+                             inset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
     searchBar.keyboardType = .numberPad
 
-    dropDownView.dataSource = ["EUR", "INR", "USD"]
     searchBar.sizeToFit()
 
     currencyTableView.delegate = self
     currencyTableView.dataSource = self
     currencyTableView.sectionIndexColor = .black
-    currencyTableView.sectionIndexBackgroundColor = .lightGray
+//    currencyTableView.sectionIndexBackgroundColor = .lightGray
     currencyTableView.sectionIndexTrackingBackgroundColor = .gray
 
     /* // Adding CollectionView to VC's view subviews hierarchy
@@ -84,15 +87,14 @@ class CurrencyViewController: UIViewController {
      */
 
     searchBar.delegate = self
-    currencyViewModel.callFetchCurrencyData { currencyData in
-      self.currenciesArray = currencyData.sorted { tableViewData1, tableViewData2 in
-        let currencyName1 = tableViewData1.currencyName
-        let currencyName2 = tableViewData2.currencyName
-        return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
-      }
-      self.tempCurrenciesArray = currencyData
+    view.bringSubviewToFront(dropDownView)
+
+    currencyViewModel.callFetchCurrencyData { currencyData, currencyNames  in
+      self.currenciesArray = currencyData
+      self.tempCurrenciesArray = self.currenciesArray
       self.currenciesDict = Dictionary(grouping: currencyData, by: {String($0.currencyName.prefix(1))})
       self.sectionTitles = self.currenciesDict?.keys.sorted() ?? [String]()
+      self.dropDownView.dataSource = currencyNames
       self.tempCurrenciesDict = self.currenciesDict
       DispatchQueue.main.async {
         self.currencyTableView.reloadData()

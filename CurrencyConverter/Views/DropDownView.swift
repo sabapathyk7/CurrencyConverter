@@ -29,6 +29,8 @@ class DropDownView: UIView {
   weak var delegate: DropDownDelegate?
   private lazy var button: UIButton = {
     let button = UIButton()
+    button.setTitle("EUR", for: .normal)
+    button.titleLabel?.font = UIFont(name: "Helvetica", size: 10.0)
     return button
   }()
   private lazy var tableView: UITableView = {
@@ -54,12 +56,15 @@ class DropDownView: UIView {
     super.init(coder: coder)
   }
   private func updateDataSource() {
-    if dataSource.count >= 1 {
-      tableViewHeight?.constant = 2 * 30
-    } else {
-      tableViewHeight?.constant = CGFloat(dataSource.count * 30)
+    DispatchQueue.main.async {
+      if self.dataSource.count >= 1 {
+        self.tableViewHeight?.constant = 500
+      } else {
+        self.tableViewHeight?.constant = 500
+      }
+      self.tableView.reloadData()
     }
-    tableView.reloadData()
+
   }
   private func setupUI() {
     self.addSubview(stackView)

@@ -14,7 +14,7 @@ class CurrencyCellView: UIView {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
     vstackView.distribution = .fillProportionally
-    vstackView.backgroundColor = .red
+//    vstackView.backgroundColor = .red
     vstackView.translatesAutoresizingMaskIntoConstraints = false
     return vstackView
   }()
@@ -43,13 +43,13 @@ class CurrencyCellView: UIView {
     label.numberOfLines = 0
     label.textAlignment = .center
     label.textColor = .blue
-    label.backgroundColor = .gray
+//    label.backgroundColor = .gray
     return label
   }()
 
   init() {
     super.init(frame: CGRect.zero)
-    self.backgroundColor = .blue
+//    self.backgroundColor = .blue
     self.translatesAutoresizingMaskIntoConstraints = false
     setupUI()
   }

@@ -18,8 +18,20 @@ import Foundation
   let rates: [String: Double]
  }
 
-struct TableViewData: Identifiable {
+struct TableViewData: Identifiable, Hashable {
   let id = UUID()
+  var base: String
   var currencyName: String
   var currencyValue: Double
 }
+
+/*
+ 1 euro is the base
+ = 90.67 INR
+ = 1.09 USD
+
+ 1 USD is the base
+ =  if (1.09 USD = 90.67 INR) what is 1 USD = 83.18 INR
+         90.67/1.09 * 1
+ */
+

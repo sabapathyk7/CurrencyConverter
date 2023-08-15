@@ -184,7 +184,7 @@ extension CurrencyViewController: UISearchBarDelegate {
         _ = aTableViewData.map { (key: String, value: [TableViewData]) in
           _ = value.map { tableViewData in
             let modifiedValue = tableViewData.currencyValue * (Double(searchText) ?? 1)
-            tableViewDatas.append(TableViewData(currencyName: tableViewData.currencyName, currencyValue: modifiedValue))
+              tableViewDatas.append(TableViewData(base: "EUR", currencyName: tableViewData.currencyName, currencyValue: modifiedValue))
           }
           dict.updateValue(tableViewDatas, forKey: key)
           tableViewDatas.removeAll()

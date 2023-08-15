@@ -25,7 +25,7 @@ struct CurrencyRowView: View {
 
 struct CurrencyRowView_Previews: PreviewProvider {
     static var previews: some View {
-      let tableViewData = TableViewData(currencyName: "Name", currencyValue: 10.222)
+        let tableViewData = TableViewData(base: "EUR", currencyName: "Name", currencyValue: 10.222)
         CurrencyRowView(tableViewData: tableViewData)
     }
 }

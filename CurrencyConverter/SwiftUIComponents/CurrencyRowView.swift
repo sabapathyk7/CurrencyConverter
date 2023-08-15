@@ -14,6 +14,7 @@ struct CurrencyRowView: View {
         VStack(alignment: .leading) {
           let locale = Locale.current
           Text(locale.localizedString(forCurrencyCode: tableViewData.currencyName) ?? "Indian Rupee" ).font(.caption)
+
           Text(tableViewData.currencyName).font(.subheadline).bold()
         }
         Spacer()

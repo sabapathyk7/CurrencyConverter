@@ -56,7 +56,6 @@ struct ContentView: View {
   }
 }
 
-
 import PlaygroundSupport
 
 PlaygroundPage.current.liveView = UIHostingController(rootView: ContentView(count: 0))

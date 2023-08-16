@@ -21,8 +21,15 @@ import Foundation
 struct TableViewData: Identifiable, Hashable {
   let id = UUID()
   var base: String
+  var currencyCode: String
   var currencyName: String
   var currencyValue: Double
+  var currencySymbol: String
+}
+
+struct Currency {
+  var code: String
+  var symbol: String
 }
 
 /*
@@ -34,4 +41,3 @@ struct TableViewData: Identifiable, Hashable {
  =  if (1.09 USD = 90.67 INR) what is 1 USD = 83.18 INR
          90.67/1.09 * 1
  */
-

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A2168D322A893AAB00F59F40 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2168D312A893AAB00F59F40 /* ComposableArchitecture */; };
 		A2168D352A893F2F00F59F40 /* TCAExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2168D342A893F2F00F59F40 /* TCAExample.swift */; };
+		A243D1DD2A8BEBE300C18A5F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */; };
 		A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20442A49EE3200152584 /* AppDelegate.swift */; };
 		A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20462A49EE3200152584 /* SceneDelegate.swift */; };
 		A25B204E2A49EE3400152584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A25B204D2A49EE3400152584 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		A2168D2F2A89344D00F59F40 /* Notes.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Notes.playground; path = CurrencyConverter/Notes.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A2168D342A893F2F00F59F40 /* TCAExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAExample.swift; sourceTree = "<group>"; };
+		A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A25B20412A49EE3200152584 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25B20442A49EE3200152584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A25B20462A49EE3200152584 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				A283D07A2A75024C006C5EAE /* UIView+Extension.swift */,
+				A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */,
 				A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */,
 				A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */,
+				A243D1DD2A8BEBE300C18A5F /* String+Extension.swift in Sources */,
 				A25B20832A4A124100152584 /* CurrencyView.swift in Sources */,
 				A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */,
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,

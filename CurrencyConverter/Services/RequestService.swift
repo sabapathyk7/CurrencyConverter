@@ -14,11 +14,10 @@ class RequestService {
 //  let colonOnWrongSide :Int = 0
   func fetchCurrencyData(completion: @escaping (CurrencyData) -> Void) {
     if let apiURL = apiURL {
-      URLSession.shared.dataTask(with: URLRequest.init(url: apiURL)) { data, response, error in
+      URLSession.shared.dataTask(with: URLRequest.init(url: apiURL)) { data, _, error in
         if let data = data {
           do {
             let currencyData = try JSONDecoder().decode(CurrencyData.self, from: data)
-            print(response ?? "")
             completion(currencyData)
           } catch let error {
             print(error)

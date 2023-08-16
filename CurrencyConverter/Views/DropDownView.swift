@@ -29,8 +29,10 @@ class DropDownView: UIView {
   weak var delegate: DropDownDelegate?
   private lazy var button: UIButton = {
     let button = UIButton()
-    button.setTitle("EUR", for: .normal)
+    button.setTitle("EUR ⬇\u{FE0E}", for: .normal)
     button.titleLabel?.font = UIFont(name: "Helvetica", size: 10.0)
+    button.setTitleColor(.blue, for: .normal)
+    button.titleLabel?.textAlignment = .center
     return button
   }()
   private lazy var tableView: UITableView = {
@@ -45,7 +47,6 @@ class DropDownView: UIView {
     vStackView.axis = .vertical
     vStackView.distribution = .fill
     vStackView.alignment = .fill
-    vStackView.backgroundColor = .red
     return vStackView
   }()
   init() {
@@ -90,7 +91,7 @@ extension DropDownView: UITableViewDelegate {
     return buttonHeight
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    button.setTitle(dataSource[indexPath.row], for: .normal)
+    button.setTitle(dataSource[indexPath.row] + "⬇\u{FE0E}", for: .normal)
     delegate?.didSelect(indexPath.row)
     tableView.isHidden = true
   }

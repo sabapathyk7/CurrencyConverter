@@ -13,6 +13,8 @@ class DropdownTableViewCell: UITableViewCell {
   lazy var label: UILabel = {
     let label = UILabel()
     label.font = UIFont(name: "Helvetica", size: 10.0)
+    label.textColor = .blue
+    label.textAlignment = .center
     return label
   }()
 

@@ -9,27 +9,28 @@ import SwiftUI
 
 struct CurrencySwiftUIView: View {
     @ObservedObject var viewModel = CurrencyViewModel()
-    
     var body: some View {
         VStack {
             HStack {
-                TextField("Enter text", text: $viewModel.enteredAmount)
+              TextField("Enter text", text: $viewModel.enteredAmount, onEditingChanged: { isBegin in
+                if isBegin {
+                  print("Begin Editing")
+                } else {
+                  print("End Editing")
+                }
+              })
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                
                 Spacer()
-                
                 Picker("Currency", selection: $viewModel.selectedBaseCurrency) {
-                    ForEach(viewModel.arrayOfTableViewData, id: \.self) {
-                        Text($0.currencyName)
+                  ForEach(viewModel.tableViewDataArray, id: \.self) {
+                      Text($0.currencyCode)
                     }
                 }
                 .pickerStyle(.menu)
             }
-            
             Spacer()
-            
-            CurrencyListView(tableViewData: $viewModel.arrayOfTableViewData)
+          CurrencyListView(tableViewData: $viewModel.tableViewDataArray)
         }
         .onAppear {
             Task {

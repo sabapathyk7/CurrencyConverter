@@ -51,10 +51,10 @@ struct CurrencyListView: View {
   }
 }
 
-//struct CurrencyListView_Previews: PreviewProvider {
-//static var previews: some View {
-//      let tableViewData = TableViewData(currencyName: "name", currencyValue: 100.00399)
-//      let arrayOfTableViewData = [tableViewData, tableViewData]
-//      CurrencyListView(tableViewData: $arrayOfTableViewData)
+// struct CurrencyListView_Previews: PreviewProvider {
+// static var previews: some View {
+//      let tableViewData = TableViewData(base: "EUR", currencyCode: "USD", currencyName: "Dollar", currencyValue: 1, currencySymbol: "$")
+//      let tableViewDataArray = [tableViewData, tableViewData]
+//   CurrencyListView(tableViewData: tableViewDataArray)
 //  }
-//}
+// }

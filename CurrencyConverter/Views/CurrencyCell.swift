@@ -13,8 +13,7 @@ class CurrencyCellView: UIView {
   private lazy var stackView: UIStackView = {
     let vstackView = UIStackView()
     vstackView.axis = .vertical
-    vstackView.distribution = .fillProportionally
-//    vstackView.backgroundColor = .red
+    vstackView.distribution = .fill
     vstackView.translatesAutoresizingMaskIntoConstraints = false
     return vstackView
   }()
@@ -25,6 +24,7 @@ class CurrencyCellView: UIView {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
+    label.font = .preferredFont(forTextStyle: .caption1)
     return label
   }()
 
@@ -34,6 +34,8 @@ class CurrencyCellView: UIView {
     label.numberOfLines = 0
     label.textAlignment = .left
     label.textColor = .black
+//    label.font = .boldSystemFont(ofSize: 18)
+    label.font = .preferredFont(forTextStyle: .headline)
     return label
   }()
 
@@ -42,8 +44,9 @@ class CurrencyCellView: UIView {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.numberOfLines = 0
     label.textAlignment = .center
-    label.textColor = .blue
-//    label.backgroundColor = .gray
+    label.textColor = .black
+    label.font = .preferredFont(forTextStyle: .headline)
+    //    label.backgroundColor = .gray
     return label
   }()
 
@@ -71,9 +74,9 @@ class CurrencyCellView: UIView {
                              inset: UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 0))
   }
   fileprivate func update(with model: TableViewData) {
-    currencyCodeLabel.text = model.currencyName
-    currencyRateLabel.text = String(format: "%f", model.currencyValue)
-    currencyNameLabel.text = locale.localizedString(forCurrencyCode: model.currencyName)
+    currencyCodeLabel.text = model.currencyCode
+    currencyRateLabel.text = model.currencySymbol + String(format: "%.4f", model.currencyValue)
+    currencyNameLabel.text = model.currencyName
   }
 }
 class CurrencyCell: UITableViewCell {

@@ -5,52 +5,130 @@
 //  Created by kanagasabapathy on 26/06/23.
 //
 
+import Combine
 import Foundation
 
-@MainActor
-class CurrencyViewModel: ObservableObject {
+@MainActor class CurrencyViewModel: ObservableObject {
     private var apiService: RequestService?
-    @Published var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+    private var cancellable = Set<AnyCancellable>()
+    // Outputs
+    @Published var tableViewDataArray: [TableViewData] = [TableViewData]()
+    // Inputs
+    @Published var enteredAmount: String = ""
+    @Published var selectedBaseCurrency: String = "EUR"
+    var tempTableViewDataArray: [TableViewData] = [TableViewData]()
+    let locale: Locale? = Locale.current
 
-    init() {
-        self.apiService = RequestService()
+    init(apiService: RequestService? = RequestService()) {
+        self.apiService = apiService
+        setupSubscribers()
     }
-
-    func callFetchCurrencyData(completion: @escaping ([TableViewData], [String]) -> Void) {
-        self.apiService?.fetchCurrencyData { (currencyData) in
-            var arrayOfCurrencyNames: [String] = [String]()
-            var arrayOfTableViewData: [TableViewData] = [TableViewData]()
-            for (key, value) in currencyData.rates {
-                let tableViewData = TableViewData(currencyName: key, currencyValue: value)
-                arrayOfTableViewData.append(tableViewData)
-                arrayOfCurrencyNames.append(key)
-            }
-          arrayOfTableViewData = arrayOfTableViewData.sorted(by: { aTableViewData, bTableViewData in
-            let aCurrencyName = aTableViewData.currencyName
-            let bCurrencyName = bTableViewData.currencyName
-            return (aCurrencyName.localizedCaseInsensitiveCompare(bCurrencyName) == .orderedAscending)
-          })
-          completion(arrayOfTableViewData, arrayOfCurrencyNames)
+    func fetchAllCurrencyDetails() -> [Currency] {
+      var currencyDet: [Currency] = [Currency]()
+      for localeID in Locale.availableIdentifiers {
+        let locale = Locale(identifier: localeID)
+        guard let currencyCode = locale.currency?.identifier, let currencySymbol = locale.currencySymbol else {
+          continue
+        }
+        if !currencySymbol.validateGenericString(currencySymbol) {
+          let filter = currencyDet.filter { $0.code.contains(currencyCode) }
+          if filter.isEmpty {
+            currencyDet.append(Currency(code: currencyCode, symbol: currencySymbol))
+          }
+        }
+      }
+      return currencyDet
+    }
+    func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> Void) {
+      self.apiService?.fetchCurrencyData { [self] (currencyData) in
+         let resultData = self.sortTableViewDataDetails(currencyData: currencyData)
+        completion(resultData)
         }
     }
-
-    func callFetchCurrencyDataSwiftUI() async -> ([TableViewData], [String]) {
-        return await withCheckedContinuation({ continuation in
-            self.apiService?.fetchCurrencyData { (currencyData) in
-              var arrayOfTableViewDataLocal: [TableViewData] = [TableViewData]()
-              var arrayOfCurrencyNames: [String] = [String]()
-                for (key, value) in currencyData.rates {
-                    let tableViewData = TableViewData(currencyName: key, currencyValue: value)
-                  arrayOfTableViewDataLocal.append(tableViewData)
-                  arrayOfCurrencyNames.append(key)
-                }
-              arrayOfTableViewDataLocal = arrayOfTableViewDataLocal.sorted(by: { aTableViewData, bTableViewData in
-                let aCurrencyName = aTableViewData.currencyName
-                let bCurrencyName = bTableViewData.currencyName
-                return (aCurrencyName.localizedCaseInsensitiveCompare(bCurrencyName) == .orderedAscending)
-              })
-              continuation.resume(returning: (arrayOfTableViewDataLocal, arrayOfCurrencyNames.sorted()))
-            }
-        })
+    func callFetchCurrencyDataSwiftUI() {
+        self.apiService?.fetchCurrencyData { (currencyData) in
+         _ =  self.sortTableViewDataDetails(currencyData: currencyData)
+        }
     }
+  func convertCurrency(by updatingValue: String, currenciesDict: [String: [TableViewData]]?) -> [String: [TableViewData]] {
+    guard let currenciesDict = currenciesDict.map({ dict in
+      var dict = dict
+      var tempTableViewData: [TableViewData] = [TableViewData]()
+      _ = dict.map({ (key: String, value: [TableViewData]) in
+        _ = value.map({ tvd in
+          var tvd = tvd
+          tvd.currencyValue.advance(by: Double(updatingValue) ?? 1.0)
+          tempTableViewData.append(tvd)
+        })
+        dict.updateValue(tempTableViewData, forKey: key)
+        tempTableViewData.removeAll()
+      })
+      return dict
+    }) else {
+      return [:]
+    }
+    return currenciesDict
+  }
+}
+
+private extension CurrencyViewModel {
+    func setupSubscribers() {
+        $enteredAmount.sink { [weak self] string in
+            print("⌨️ Typed Amount", string)
+            guard let unwrappedSelf = self, let amount = Double(string) else {
+                return
+            }
+            unwrappedSelf.reactToEnteredAmount(amount)
+        }.store(in: &cancellable)
+        $selectedBaseCurrency.sink { [weak self] string in
+            print("💰 Selected Currency", string)
+            guard let unwrappedSelf = self else {
+                return
+            }
+            unwrappedSelf.reactToSelectedCurrency(string)
+        }.store(in: &cancellable)
+    }
+}
+
+private extension CurrencyViewModel {
+    func reactToSelectedCurrency(_ currency: String) {
+        // self.arrayOfTableViewData = computedTableViewData
+    }
+    func reactToEnteredAmount(_ amount: Double) {
+      tableViewDataArray = tempTableViewDataArray
+      let computedTableViewData = tableViewDataArray.map { data in
+          return TableViewData(base: selectedBaseCurrency, currencyCode: data.currencyCode,
+                                 currencyName: data.currencyName,
+                                 currencyValue: data.currencyValue * amount, currencySymbol: data.currencySymbol)
+        }
+        self.tableViewDataArray = computedTableViewData
+    }
+  func sortTableViewDataDetails(currencyData: CurrencyData) -> ([TableViewData]) {
+
+    let currencyDet = self.fetchAllCurrencyDetails()
+    var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+    for (key, value) in currencyData.rates {
+      guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
+        continue
+      }
+      guard let currencyName = locale?.localizedString(forCurrencyCode: key) else {
+        continue
+      }
+      let tableViewData = TableViewData(base: self.selectedBaseCurrency, currencyCode: key,
+                                        currencyName: currencyName,
+                                        currencyValue: value, currencySymbol: currencySymbol.symbol)
+      arrayOfTableViewData.append(tableViewData)
+    }
+    arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
+      let currencyName1 = tableViewData1.currencyCode
+      let currencyName2 = tableViewData2.currencyCode
+      return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
+    })
+    DispatchQueue.main.async {
+      self.tableViewDataArray = arrayOfTableViewData
+    }
+    self.tempTableViewDataArray = arrayOfTableViewData
+
+    return arrayOfTableViewData
+  }
 }

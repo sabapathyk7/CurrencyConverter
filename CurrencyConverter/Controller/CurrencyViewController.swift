@@ -12,7 +12,6 @@ class CurrencyViewController: UIViewController {
   private let currencyViewModel: CurrencyViewModel = CurrencyViewModel()
   private var currencyView: CurrencyView = CurrencyView()
   private var currenciesArray: [TableViewData]?
-  private var tempCurrenciesArray: [TableViewData]?
   private var currenciesDict: [String: [TableViewData]]?
   private var tempCurrenciesDict: [String: [TableViewData]]?
   private var isSearching: Bool = false
@@ -22,14 +21,23 @@ class CurrencyViewController: UIViewController {
   private lazy var searchBar: UISearchBar = {
     let searchBar = UISearchBar()
     searchBar.translatesAutoresizingMaskIntoConstraints = false
+    searchBar.keyboardType = .numberPad
+    searchBar.sizeToFit()
     return searchBar
+  }()
+  private lazy var textField: UITextField = {
+    let textField = UITextField()
+    textField.placeholder = "Enter value"
+    textField.borderStyle = .roundedRect
+    textField.tintColor = .blue
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    return textField
   }()
 
   private lazy var currencyTableView: UITableView = {
     var tableView = UITableView()
     let displayWidth: CGFloat = self.view.frame.width
     let displayHeight: CGFloat = self.view.frame.height
-    tableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
     tableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
     return tableView
   }()
@@ -50,51 +58,15 @@ class CurrencyViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    currencyTableView.register(CurrencyCell.self, forCellReuseIdentifier: "CurrencyCell")
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = .white
-//    dropDownView.backgroundColor = .red
-//    searchBar.backgroundColor = .green
-//    currencyTableView.backgroundColor = .brown
-    view.addSubViews([searchBar, dropDownView, currencyTableView])
-    searchBar.anchor(top: view.margingTop, leading: view.marginLeading,
-                     bottom: nil,
-                     trailing: dropDownView.marginLeading,
-                     inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    dropDownView.anchor(top: view.margingTop, leading: dropDownView.marginTrailing,
-                        bottom: nil,
-                          trailing: view.marginTrailing,
-                          inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    dropDownView.marginWidth.constraint(equalToConstant: 60.0).isActive = true
-    currencyTableView.anchor(top: searchBar.marginBottom, leading: view.marginLeading,
-                             bottom: view.marginBottom, trailing: view.marginTrailing,
-                             inset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
-    searchBar.keyboardType = .numberPad
-
-    searchBar.sizeToFit()
-
-    currencyTableView.delegate = self
-    currencyTableView.dataSource = self
-    currencyTableView.sectionIndexColor = .black
-//    currencyTableView.sectionIndexBackgroundColor = .lightGray
-    currencyTableView.sectionIndexTrackingBackgroundColor = .gray
-
-    /* // Adding CollectionView to VC's view subviews hierarchy
-//    view.addSubview(currencyCollectionView)
-//    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
-//    currencyCollectionView.delegate = self
-//    currencyCollectionView.dataSource = self
-     */
-
-    searchBar.delegate = self
-    view.bringSubviewToFront(dropDownView)
-
-    currencyViewModel.callFetchCurrencyData { currencyData, currencyNames  in
+    setupUI()
+    fetchDataFromVM()
+  }
+  func fetchDataFromVM() {
+    currencyViewModel.callFetchCurrencyData { currencyData   in
       self.currenciesArray = currencyData
-      self.tempCurrenciesArray = self.currenciesArray
       self.currenciesDict = Dictionary(grouping: currencyData, by: {String($0.currencyName.prefix(1))})
       self.sectionTitles = self.currenciesDict?.keys.sorted() ?? [String]()
-      self.dropDownView.dataSource = currencyNames
+      self.dropDownView.dataSource = currencyData.map { return $0.currencyCode }
       self.tempCurrenciesDict = self.currenciesDict
       DispatchQueue.main.async {
         self.currencyTableView.reloadData()
@@ -102,10 +74,52 @@ class CurrencyViewController: UIViewController {
       }
     }
   }
+  func setupUI() {
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .white
+    textField.delegate = self
+    view.addSubViews([textField, dropDownView, currencyTableView])
+    textField.anchor(top: view.margingTop, leading: view.marginLeading,
+                     bottom: nil,
+                     trailing: dropDownView.marginLeading,
+                     inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    textField.anchorDimension(width: nil, height: textField.marginHeight, inset: UIEdgeInsets(top: 0, left: 0, bottom: 40.0, right: 0))
+    dropDownView.anchor(top: view.margingTop, leading: nil,
+                        bottom: nil,
+                          trailing: view.marginTrailing,
+                          inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    dropDownView.anchorDimension(width: dropDownView.marginWidth,
+                                 height: nil,
+                                 inset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 80.0))
+    currencyTableView.anchor(top: textField.marginBottom, leading: view.marginLeading,
+                             bottom: view.marginBottom, trailing: view.marginTrailing,
+                             inset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
+    currencyTableView.delegate = self
+    currencyTableView.dataSource = self
+    currencyTableView.sectionIndexColor = .black
+    currencyTableView.sectionIndexBackgroundColor = .lightGray
+    view.bringSubviewToFront(dropDownView)
+
+    /* // Adding CollectionView to VC's view subviews hierarchy
+    view.addSubview(currencyCollectionView)
+    currencyCollectionView.pinToLayoutGuide(layoutGuide: view.layoutMarginsGuide, constant: 20)
+    currencyCollectionView.delegate = self
+    currencyCollectionView.dataSource = self
+     */
+  }
 }
 
 extension CurrencyViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let returnedView = UIView(frame: CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: view.frame.height))
+    returnedView.backgroundColor = .blue
+    let label = UILabel(frame: CGRect(x: view.frame.origin.x+10, y: view.frame.origin.y+5, width: view.frame.width/3, height: 20))
+    label.textAlignment = .natural
+    label.text = sectionTitles[section]
 
+    returnedView.addSubview(label)
+    return returnedView
+  }
 }
 
 extension CurrencyViewController: UITableViewDataSource {
@@ -184,7 +198,11 @@ extension CurrencyViewController: UISearchBarDelegate {
         _ = aTableViewData.map { (key: String, value: [TableViewData]) in
           _ = value.map { tableViewData in
             let modifiedValue = tableViewData.currencyValue * (Double(searchText) ?? 1)
-            tableViewDatas.append(TableViewData(currencyName: tableViewData.currencyName, currencyValue: modifiedValue))
+            tableViewDatas.append(TableViewData(base: "EUR",
+                                                currencyCode: tableViewData.currencyCode,
+                                                currencyName: tableViewData.currencyName,
+                                                currencyValue: modifiedValue,
+                                                currencySymbol: tableViewData.currencySymbol))
           }
           dict.updateValue(tableViewDatas, forKey: key)
           tableViewDatas.removeAll()
@@ -198,5 +216,39 @@ extension CurrencyViewController: UISearchBarDelegate {
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     isSearching = false
     currencyTableView.reloadData()
+  }
+}
+
+extension CurrencyViewController: UITextFieldDelegate {
+
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let currentText = textField.text
+    guard let stringRange = Range(range, in: currentText ?? "1") else {
+      return false
+    }
+    guard let updatedText = currentText?.replacingCharacters(in: stringRange, with: string) else {
+      return false
+    }
+    if updatedText.isEmpty {
+      self.currenciesDict = self.tempCurrenciesDict
+    } else {
+      currenciesDict = tempCurrenciesDict
+      currenciesDict = currencyViewModel.convertCurrency(by: updatedText, currenciesDict: currenciesDict)
+//      currenciesDict?.values.forEach({ TVD in
+//        TVD.forEach { tableViewData in
+//          var tvd = tableViewData
+//          tvd.currencyValue.advance(by: Double(updatedText) ?? 1.0)
+//        }
+//      })
+    }
+    isSearching = true
+    currencyTableView.reloadData()
+    return true
+  }
+}
+
+extension Double {
+  mutating func advance(by value: Double) {
+    self *= value
   }
 }

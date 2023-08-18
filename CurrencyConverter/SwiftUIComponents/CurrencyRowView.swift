@@ -9,22 +9,22 @@ import SwiftUI
 
 struct CurrencyRowView: View {
   @State var tableViewData: TableViewData
+  let locale = Locale.current
   var body: some View {
       HStack(alignment: .bottom) {
         VStack(alignment: .leading) {
-          let locale = Locale.current
-          Text(locale.localizedString(forCurrencyCode: tableViewData.currencyName) ?? "Indian Rupee" ).font(.caption)
-          Text(tableViewData.currencyName).font(.subheadline).bold()
+          Text(tableViewData.currencyName ).font(.caption)
+          Text(tableViewData.currencyCode).font(.subheadline).bold()
         }
         Spacer()
-        Text(String(tableViewData.currencyValue)).font(.headline)
+        Text(tableViewData.currencySymbol + String(tableViewData.currencyValue)).font(.headline)
       }.padding()
     }
 }
 
 struct CurrencyRowView_Previews: PreviewProvider {
     static var previews: some View {
-      let tableViewData = TableViewData(currencyName: "Name", currencyValue: 10.222)
+      let tableViewData = TableViewData(base: "EUR", currencyCode: "EUR", currencyName: "Euro", currencyValue: 10.222, currencySymbol: "$")
         CurrencyRowView(tableViewData: tableViewData)
     }
 }

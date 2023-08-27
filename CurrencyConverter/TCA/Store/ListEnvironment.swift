@@ -9,7 +9,4 @@ import Foundation
 
 struct ListEnvironment {
   let currencyService: CurrencyServiceProtocol
-  init(currencyService: CurrencyServiceProtocol) {
-    self.currencyService = currencyService
-  }
 }

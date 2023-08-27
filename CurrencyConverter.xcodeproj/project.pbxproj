@@ -27,6 +27,15 @@
 		A26CC0FA2A854EB8003FC29F /* CurrencyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */; };
 		A26CC0FC2A8550AB003FC29F /* CurrencySwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */; };
 		A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283D07A2A75024C006C5EAE /* UIView+Extension.swift */; };
+		A284D15C2A9A523E0083CEB3 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284D15B2A9A523E0083CEB3 /* AppStore.swift */; };
+		A284D15E2A9A67640083CEB3 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284D15D2A9A67640083CEB3 /* ListView.swift */; };
+		A284D1612A9A80E10083CEB3 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284D1602A9A80E10083CEB3 /* CurrencyService.swift */; };
+		A2A52AE62A99E08700B64DC6 /* ListEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A52AE52A99E08700B64DC6 /* ListEnvironment.swift */; };
+		A2A52AE82A9A1B4D00B64DC6 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A52AE72A9A1B4D00B64DC6 /* AppView.swift */; };
+		A2A52AEA2A9A1BA500B64DC6 /* ListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A52AE92A9A1BA500B64DC6 /* ListStore.swift */; };
+		A2A52AEC2A9A1F3F00B64DC6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A52AEB2A9A1F3F00B64DC6 /* MainView.swift */; };
+		A2AD881A2A96706D0040E959 /* CurrencyTCAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD88192A96706D0040E959 /* CurrencyTCAViewController.swift */; };
+		A2AD881C2A9674D40040E959 /* CurrencyTCATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD881B2A9674D40040E959 /* CurrencyTCATableViewCell.swift */; };
 		A2B44C2E2A82C2E000679367 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */; };
 		A2B44C302A82C68600679367 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B44C2F2A82C68600679367 /* DropDownView.swift */; };
 		A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D511A12A4CA64200A9549C /* RequestService.swift */; };
@@ -50,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A2168D2F2A89344D00F59F40 /* Notes.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Notes.playground; path = CurrencyConverter/Notes.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A2168D342A893F2F00F59F40 /* TCAExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAExample.swift; sourceTree = "<group>"; };
 		A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A25B20412A49EE3200152584 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +82,16 @@
 		A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRowView.swift; sourceTree = "<group>"; };
 		A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySwiftUIViewController.swift; sourceTree = "<group>"; };
 		A283D07A2A75024C006C5EAE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		A284D15B2A9A523E0083CEB3 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		A284D15D2A9A67640083CEB3 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		A284D1602A9A80E10083CEB3 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencyService.swift; path = ../../../../Documents/CurrencyService.swift; sourceTree = "<group>"; };
+		A284D1632A9B68500083CEB3 /* NotesTCA.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NotesTCA.playground; sourceTree = "<group>"; };
+		A2A52AE52A99E08700B64DC6 /* ListEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEnvironment.swift; sourceTree = "<group>"; };
+		A2A52AE72A9A1B4D00B64DC6 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		A2A52AE92A9A1BA500B64DC6 /* ListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStore.swift; sourceTree = "<group>"; };
+		A2A52AEB2A9A1F3F00B64DC6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A2AD88192A96706D0040E959 /* CurrencyTCAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCAViewController.swift; sourceTree = "<group>"; };
+		A2AD881B2A9674D40040E959 /* CurrencyTCATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCATableViewCell.swift; sourceTree = "<group>"; };
 		A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		A2B44C2F2A82C68600679367 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		A2D511A12A4CA64200A9549C /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
@@ -105,12 +123,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A2168D332A893E2F00F59F40 /* TCA */ = {
+		A2168D332A893E2F00F59F40 /* TCANotes */ = {
 			isa = PBXGroup;
 			children = (
+				A284D1632A9B68500083CEB3 /* NotesTCA.playground */,
 				A2168D342A893F2F00F59F40 /* TCAExample.swift */,
 			);
-			path = TCA;
+			path = TCANotes;
 			sourceTree = "<group>";
 		};
 		A25B20382A49EE3200152584 = {
@@ -136,15 +155,9 @@
 		A25B20432A49EE3200152584 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
-				A2168D332A893E2F00F59F40 /* TCA */,
-				A2168D2F2A89344D00F59F40 /* Notes.playground */,
-				A26CC0F42A854DFC003FC29F /* SwiftUIComponents */,
-				A283D0782A750212006C5EAE /* Extension */,
-				A2D511A02A4CA63200A9549C /* Services */,
-				A25B20772A49EF7C00152584 /* ViewModel */,
-				A25B20762A49EF7400152584 /* Controller */,
-				A25B20752A49EF6E00152584 /* Views */,
-				A25B20742A49EF6400152584 /* Model */,
+				A2879BC42A8F7A5300BD092C /* TCA */,
+				A2168D332A893E2F00F59F40 /* TCANotes */,
+				A2A52AE32A99DC0400B64DC6 /* MVVM */,
 				A25B20442A49EE3200152584 /* AppDelegate.swift */,
 				A25B20462A49EE3200152584 /* SceneDelegate.swift */,
 				A25B204D2A49EE3400152584 /* Assets.xcassets */,
@@ -190,13 +203,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A25B20762A49EF7400152584 /* Controller */ = {
+		A25B20762A49EF7400152584 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A283D0782A750212006C5EAE /* Extension */,
+				A25B20752A49EF6E00152584 /* Views */,
 				A25B207A2A49F28900152584 /* CurrencyViewController.swift */,
-				A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */,
 			);
-			path = Controller;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		A25B20772A49EF7C00152584 /* ViewModel */ = {
@@ -210,6 +224,7 @@
 		A26CC0F42A854DFC003FC29F /* SwiftUIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */,
 				A26CC0F52A854E19003FC29F /* CurrencySwiftUIView.swift */,
 				A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */,
 				A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */,
@@ -224,6 +239,74 @@
 				A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A284D15F2A9A80BB0083CEB3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A284D1602A9A80E10083CEB3 /* CurrencyService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A284D1622A9A85DA0083CEB3 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				A2A52AE52A99E08700B64DC6 /* ListEnvironment.swift */,
+				A2A52AE92A9A1BA500B64DC6 /* ListStore.swift */,
+				A284D15B2A9A523E0083CEB3 /* AppStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		A2879BC42A8F7A5300BD092C /* TCA */ = {
+			isa = PBXGroup;
+			children = (
+				A284D15F2A9A80BB0083CEB3 /* Services */,
+				A2A52AE42A99DC3A00B64DC6 /* SwiftUI */,
+				A2AD88182A96703B0040E959 /* UIKit */,
+				A284D1622A9A85DA0083CEB3 /* Store */,
+			);
+			path = TCA;
+			sourceTree = "<group>";
+		};
+		A2A52AE32A99DC0400B64DC6 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				A25B20762A49EF7400152584 /* UIKit */,
+				A26CC0F42A854DFC003FC29F /* SwiftUIComponents */,
+				A2D511A02A4CA63200A9549C /* Services */,
+				A25B20772A49EF7C00152584 /* ViewModel */,
+				A25B20742A49EF6400152584 /* Model */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		A2A52AE42A99DC3A00B64DC6 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				A2A52AE72A9A1B4D00B64DC6 /* AppView.swift */,
+				A2A52AEB2A9A1F3F00B64DC6 /* MainView.swift */,
+				A284D15D2A9A67640083CEB3 /* ListView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		A2AD88182A96703B0040E959 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD881D2A9674E10040E959 /* TableViewCell */,
+				A2AD88192A96706D0040E959 /* CurrencyTCAViewController.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		A2AD881D2A9674E10040E959 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD881B2A9674D40040E959 /* CurrencyTCATableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		A2D511A02A4CA63200A9549C /* Services */ = {
@@ -392,20 +475,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2AD881A2A96706D0040E959 /* CurrencyTCAViewController.swift in Sources */,
 				A26CC0FA2A854EB8003FC29F /* CurrencyRowView.swift in Sources */,
 				A2B44C302A82C68600679367 /* DropDownView.swift in Sources */,
 				A25B20792A49EF9300152584 /* CurrencyViewModel.swift in Sources */,
 				A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */,
 				A26CC0FC2A8550AB003FC29F /* CurrencySwiftUIViewController.swift in Sources */,
 				A2D511A22A4CA64200A9549C /* RequestService.swift in Sources */,
+				A284D15E2A9A67640083CEB3 /* ListView.swift in Sources */,
 				A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */,
 				A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */,
+				A2A52AE62A99E08700B64DC6 /* ListEnvironment.swift in Sources */,
 				A243D1DD2A8BEBE300C18A5F /* String+Extension.swift in Sources */,
+				A2A52AEA2A9A1BA500B64DC6 /* ListStore.swift in Sources */,
+				A2AD881C2A9674D40040E959 /* CurrencyTCATableViewCell.swift in Sources */,
 				A25B20832A4A124100152584 /* CurrencyView.swift in Sources */,
 				A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */,
+				A284D1612A9A80E10083CEB3 /* CurrencyService.swift in Sources */,
+				A284D15C2A9A523E0083CEB3 /* AppStore.swift in Sources */,
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,
 				A25B207F2A49F2B500152584 /* Currency.swift in Sources */,
 				A2B44C2E2A82C2E000679367 /* DropdownTableViewCell.swift in Sources */,
+				A2A52AE82A9A1B4D00B64DC6 /* AppView.swift in Sources */,
+				A2A52AEC2A9A1F3F00B64DC6 /* MainView.swift in Sources */,
 				A26CC0F82A854E8A003FC29F /* CurrencyListView.swift in Sources */,
 				A25B207B2A49F28900152584 /* CurrencyViewController.swift in Sources */,
 				A2168D352A893F2F00F59F40 /* TCAExample.swift in Sources */,
@@ -743,7 +835,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 0.52.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

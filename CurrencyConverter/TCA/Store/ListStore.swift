@@ -22,6 +22,7 @@ struct ListStore: Reducer {
     case onAppear(TableViewData)
     case currencyDataResponse(Result<CurrencyData, NAError>)
   }
+  
   // Reducer
 //  func reduce(into state: inout State, action: Action) -> Effect<Action> {
 //    switch action {
@@ -53,27 +54,7 @@ struct ListStore: Reducer {
           .receive(on: DispatchQueue.main)
           .catchToEffect(Action.currencyDataResponse)
       case let .currencyDataResponse(.success(currencyListView)):
-        let currencyDet = self.fetchAllCurrencyDetails()
-        var arrayOfTableViewData: [TableViewData] = [TableViewData]()
-        for (key, value) in currencyListView.rates {
-          guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
-            continue
-          }
-          let locale = Locale.current
-          guard let currencyName = locale.localizedString(forCurrencyCode: key) else {
-            continue
-          }
-          let tableViewData = TableViewData(base: "EUR", currencyCode: key,
-                                            currencyName: currencyName,
-                                            currencyValue: value, currencySymbol: currencySymbol.symbol)
-          arrayOfTableViewData.append(tableViewData)
-        }
-        arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
-          let currencyName1 = tableViewData1.currencyCode
-          let currencyName2 = tableViewData2.currencyCode
-          return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
-        })
-        state.tableViewDataArray = arrayOfTableViewData
+        state.tableViewDataArray = getTableViewDataArray(currencyListView: currencyListView)
         return .none
       case let .currencyDataResponse(.failure(error)):
         print("❇️ Error:", error.localizedDescription)
@@ -99,5 +80,28 @@ struct ListStore: Reducer {
       }
     }
     return currencyDet
+  }
+  func getTableViewDataArray(currencyListView: CurrencyData) -> [TableViewData] {
+    let currencyDet = self.fetchAllCurrencyDetails()
+    var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+    for (key, value) in currencyListView.rates {
+      guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
+        continue
+      }
+      let locale = Locale.current
+      guard let currencyName = locale.localizedString(forCurrencyCode: key) else {
+        continue
+      }
+      let tableViewData = TableViewData(base: "EUR", currencyCode: key,
+                                        currencyName: currencyName,
+                                        currencyValue: value, currencySymbol: currencySymbol.symbol)
+      arrayOfTableViewData.append(tableViewData)
+    }
+    arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
+      let currencyName1 = tableViewData1.currencyCode
+      let currencyName2 = tableViewData2.currencyCode
+      return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
+    })
+    return arrayOfTableViewData
   }
 }

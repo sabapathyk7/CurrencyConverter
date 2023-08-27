@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+
 struct AppView: View {
   let store: StoreOf<AppStore>
     var body: some View {

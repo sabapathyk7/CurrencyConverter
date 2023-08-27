@@ -9,7 +9,6 @@ import Foundation
 import ComposableArchitecture
 
 struct AppStore: Reducer {
-
   struct State: Equatable {
     var listState: ListStore.State
     static let initial: Self = .init(
@@ -18,7 +17,6 @@ struct AppStore: Reducer {
   }
 
   enum Action: Equatable {
-
     case list(ListStore.Action)
   }
 
@@ -36,13 +34,4 @@ struct AppStore: Reducer {
       ListStore()
     }
   }
-//  func reduce(into state: inout State, action: Action) -> Effect<Action> {
-//      switch action {
-//      case .list:
-//        return .none
-//      }
-//    Scope(state: \State.listState, action: /.list) {
-//      ListStore()
-//    }
-//  }
 }

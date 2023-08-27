@@ -24,15 +24,15 @@ final class CurrencyService {
 }
 
 extension CurrencyService: CurrencyServiceProtocol {
-  func getCurrencyData<T>() -> AnyPublisher<T, NAError> where T : Decodable {
+  func getCurrencyData<T>() -> AnyPublisher<T, NAError> where T: Decodable {
     var request = URLRequest(url: URL(string: endpointURL)!)
     request.httpMethod = "GET"
 
     return session.dataTaskPublisher(for: request)
       .map(\.data)
       .decode(type: T.self, decoder: jsonDecoder)
-      .mapError { e -> NAError in
-        switch e {
+      .mapError { error -> NAError in
+        switch error {
         case is Swift.DecodingError:
           return .mapping
         default:

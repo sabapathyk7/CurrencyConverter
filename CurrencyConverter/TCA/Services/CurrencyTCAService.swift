@@ -10,37 +10,37 @@ import Combine
 
 // MARK: - Service Protocol
 protocol CurrencyServiceProtocol {
-  func getCurrencyData<T: Decodable>() -> AnyPublisher<T, NAError>
+    func getCurrencyData<T: Decodable>() -> AnyPublisher<T, NAError>
 }
 
 final class CurrencyService {
-  let endpointURL = "https://pastebin.com/raw/Nq1KvHjZ"
-  let jsonDecoder = JSONDecoder()
-  private let session: URLSession
-
-  init(session: URLSession) {
-    self.session = session
-  }
+    let endpointURL = "https://pastebin.com/raw/Nq1KvHjZ"
+    let jsonDecoder = JSONDecoder()
+    private let session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
 }
 
 extension CurrencyService: CurrencyServiceProtocol {
-  func getCurrencyData<T>() -> AnyPublisher<T, NAError> where T: Decodable {
-    var request = URLRequest(url: URL(string: endpointURL)!)
-    request.httpMethod = "GET"
-
-    return session.dataTaskPublisher(for: request)
-      .map(\.data)
-      .decode(type: T.self, decoder: jsonDecoder)
-      .mapError { error -> NAError in
-        switch error {
-        case is Swift.DecodingError:
-          return .mapping
-        default:
-          return .generic
-        }
-      }
-      .eraseToAnyPublisher()
-  }
+    func getCurrencyData<T>() -> AnyPublisher<T, NAError> where T: Decodable {
+        var request = URLRequest(url: URL(string: endpointURL)!)
+        request.httpMethod = "GET"
+        
+        return session.dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: T.self, decoder: jsonDecoder)
+            .mapError { error -> NAError in
+                switch error {
+                case is Swift.DecodingError:
+                    return .mapping
+                default:
+                    return .generic
+                }
+            }
+            .eraseToAnyPublisher()
+    }
 }
 
 fileprivate struct Constants {

@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         rootViewTCASwiftUI(window: window)
-        //    rootViewSwiftUI(window: )
-        //    rootViewUIKit(window: window)
+//            rootViewSwiftUI(window: )
+//            rootViewUIKit(window: window)
     }
     
     
@@ -38,7 +38,7 @@ private extension SceneDelegate {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }
-    
+
     func rootViewTCASwiftUI(window: UIWindow) {
         let viewController = CurrencyTCASwiftUIViewController()
         window.rootViewController = viewController

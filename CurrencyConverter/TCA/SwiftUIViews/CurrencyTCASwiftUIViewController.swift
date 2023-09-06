@@ -11,7 +11,6 @@ import UIKit
 class CurrencyTCASwiftUIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let rootView = CurrencyConverterView(
             store: .init(initialState: .init(),
                          reducer: { CurrencyConverter() })

@@ -18,7 +18,6 @@ struct CurrencyConverter: Reducer {
         var priceQuantityEntered = "1"
         var selectedBaseCurrency: String = "EUR"
     }
-    
     enum Action: Equatable {
         case onAppear
         case processAPIResponse(Result<CurrencyData, NAError>)
@@ -26,7 +25,6 @@ struct CurrencyConverter: Reducer {
         case countryCodePickerSelected(String)
         case updateCurrencies([TableViewData])
     }
-    
     var body: some ReducerProtocolOf<Self> {
         Reduce { state, action in
             switch action {
@@ -82,7 +80,6 @@ private extension CurrencyConverter {
         })
         return arrayOfTableViewData
     }
-    
     func fetchAllCurrencyDetails() -> [Currency] {
         var currencyDet: [Currency] = [Currency]()
         for localeID in Locale.availableIdentifiers {
@@ -103,7 +100,7 @@ private extension CurrencyConverter {
 }
 
 private extension CurrencyConverter {
-    func reactToEnteredAmount(state: CurrencyConverter.State, amount: Double) ->  [TableViewData] {
+    func reactToEnteredAmount(state: CurrencyConverter.State, amount: Double) -> [TableViewData] {
         if amount != 0 {
             return state.initialCurrencies.map { data in
                 return TableViewData(base: state.selectedBaseCurrency,
@@ -118,7 +115,7 @@ private extension CurrencyConverter {
 }
 
 extension Double {
-    func rounded(toPlaces places:Int) -> Double {
+    func rounded(toPlaces places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }

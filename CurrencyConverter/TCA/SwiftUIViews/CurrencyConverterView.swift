@@ -10,7 +10,6 @@ import ComposableArchitecture
 
 struct CurrencyConverterView: View {
     let store: StoreOf<CurrencyConverter>
-    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {

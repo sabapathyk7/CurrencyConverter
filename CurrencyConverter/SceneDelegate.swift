@@ -18,12 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
             return
         }
-        rootViewTCASwiftUI(window: window)
+//        rootViewTCASwiftUI(window: window)
 //            rootViewSwiftUI(window: )
-//            rootViewUIKit(window: window)
+            rootViewUIKit(window: window)
     }
-    
-    
 }
 
 private extension SceneDelegate {

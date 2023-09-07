@@ -120,9 +120,7 @@ private extension CurrencyViewModel {
       arrayOfTableViewData.append(tableViewData)
     }
     arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
-      let currencyName1 = tableViewData1.currencyCode
-      let currencyName2 = tableViewData2.currencyCode
-      return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
+      return (tableViewData1.currencyCode.localizedCaseInsensitiveCompare(tableViewData2.currencyCode) == .orderedAscending)
     })
     DispatchQueue.main.async {
       self.tableViewDataArray = arrayOfTableViewData

@@ -10,16 +10,16 @@ import ComposableArchitecture
 struct AppView: View {
   let store: StoreOf<AppStore>
     var body: some View {
-      WithViewStore(self.store, observe: { $0 }) { viewStore in
-        ListView(
-          store: store.scope(
-          state: \.listState,
-          action: AppStore.Action.list)
-        )
-        .onAppear {
-          viewStore.start()
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            ListView(
+              store: store.scope(
+              state: \.listState,
+              action: AppStore.Action.list)
+            )
+            .onAppear {
+              viewStore.start()
+            }
         }
-      }
     }
 }
 

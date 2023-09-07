@@ -36,7 +36,6 @@ class DropDownView: UIView {
     }()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(DropdownTableViewCell.self, forCellReuseIdentifier: "DropdownTableViewCell")
         tableView.isHidden = true
         return tableView
@@ -67,8 +66,7 @@ class DropDownView: UIView {
     }
     private func setupUI() {
         self.addSubview(stackView)
-        stackView.addArrangedSubview(button)
-        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubviews([button, tableView])
         tableView.delegate = self
         tableView.dataSource = self
         button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)

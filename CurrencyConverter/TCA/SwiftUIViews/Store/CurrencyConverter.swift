@@ -10,7 +10,6 @@ import ComposableArchitecture
 typealias Currencies = [TableViewData]
 
 struct CurrencyConverter: Reducer {
-    private let service: CurrencyServiceProtocol = CurrencyService(session: .shared)
 
     struct State: Equatable {
         var initialCurrencies: Currencies = []
@@ -20,25 +19,26 @@ struct CurrencyConverter: Reducer {
     }
     enum Action: Equatable {
         case onAppear
-        case processAPIResponse(Result<CurrencyData, NAError>)
+        case processAPIResponse(CurrencyData)
         case quantityTextFieldEntered(String)
         case countryCodePickerSelected(String)
         case updateCurrencies([TableViewData])
     }
-    var body: some ReducerProtocolOf<Self> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return service
-                    .getCurrencyData()
-                    .receive(on: DispatchQueue.main)
-                    .catchToEffect()
-                    .map(Action.processAPIResponse)
-            case let .processAPIResponse(.success(currencyListView)):
-                let cuurencies = getTableViewDataArray(currencyListView: currencyListView)
+                return .run { send in
+                    let (data, _) = try await URLSession.shared.data(from: URL(string: "https://pastebin.com/raw/Nq1KvHjZ")!)
+                    let currencyData = try JSONDecoder().decode(CurrencyData.self, from: data)
+                    await send(.processAPIResponse(currencyData))
+                }
+            case let .processAPIResponse(data):
+                let cuurencies = getTableViewDataArray(currencyListView: data)
                 state.initialCurrencies = cuurencies
                 return .send(.updateCurrencies(cuurencies))
-            case .processAPIResponse(.failure(_)):
+            case let .updateCurrencies(currencies):
+                state.currencies = currencies
                 return .none
             case let .quantityTextFieldEntered(string):
                 state.priceQuantityEntered = string
@@ -47,18 +47,15 @@ struct CurrencyConverter: Reducer {
             case let .countryCodePickerSelected(currencyCode):
                 state.selectedBaseCurrency = currencyCode
                 return .none
-            case let .updateCurrencies(curencies):
-                state.currencies = curencies
-                return .none
             }
         }
     }
 }
 
 private extension CurrencyConverter {
-    func getTableViewDataArray(currencyListView: CurrencyData) -> [TableViewData] {
+    func getTableViewDataArray(currencyListView: CurrencyData) -> Currencies {
         let currencyDet = self.fetchAllCurrencyDetails()
-        var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+        var arrayOfTableViewData: Currencies = Currencies()
         for (key, value) in currencyListView.rates {
             guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
                 continue
@@ -74,9 +71,7 @@ private extension CurrencyConverter {
             arrayOfTableViewData.append(tableViewData)
         }
         arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
-            let currencyName1 = tableViewData1.currencyCode
-            let currencyName2 = tableViewData2.currencyCode
-            return (currencyName1.localizedCaseInsensitiveCompare(currencyName2) == .orderedAscending)
+            return (tableViewData1.currencyCode.localizedCaseInsensitiveCompare(tableViewData2.currencyCode) == .orderedAscending)
         })
         return arrayOfTableViewData
     }
@@ -100,7 +95,7 @@ private extension CurrencyConverter {
 }
 
 private extension CurrencyConverter {
-    func reactToEnteredAmount(state: CurrencyConverter.State, amount: Double) -> [TableViewData] {
+    func reactToEnteredAmount(state: CurrencyConverter.State, amount: Double) -> Currencies {
         if amount != 0 {
             return state.initialCurrencies.map { data in
                 return TableViewData(base: state.selectedBaseCurrency,

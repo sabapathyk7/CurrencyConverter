@@ -39,14 +39,14 @@ import Foundation
       }
       return currencyDet
     }
-    func callFetchCurrencyData(completion: @escaping ([TableViewData]) -> Void) {
-      self.apiService?.fetchCurrencyData { [self] (currencyData) in
+    func callFetchCurrencyData(base: String, completion: @escaping ([TableViewData]) -> Void) {
+        self.apiService?.fetchCurrencyData(baseCurrency: base) { [self] (currencyData) in
          let resultData = self.sortTableViewDataDetails(currencyData: currencyData)
         completion(resultData)
         }
     }
-    func callFetchCurrencyDataSwiftUI() {
-        self.apiService?.fetchCurrencyData { (currencyData) in
+    func callFetchCurrencyDataSwiftUI(base: String) {
+        self.apiService?.fetchCurrencyData(baseCurrency: base) { (currencyData) in
          _ =  self.sortTableViewDataDetails(currencyData: currencyData)
         }
     }
@@ -92,7 +92,9 @@ private extension CurrencyViewModel {
 
 private extension CurrencyViewModel {
     func reactToSelectedCurrency(_ currency: String) {
-        // self.arrayOfTableViewData = computedTableViewData
+        self.apiService?.fetchCurrencyData(baseCurrency: currency) { (currencyData) in
+         _ =  self.sortTableViewDataDetails(currencyData: currencyData)
+        }
     }
     func reactToEnteredAmount(_ amount: Double) {
       tableViewDataArray = tempTableViewDataArray
@@ -107,7 +109,7 @@ private extension CurrencyViewModel {
 
     let currencyDet = self.fetchAllCurrencyDetails()
     var arrayOfTableViewData: [TableViewData] = [TableViewData]()
-    for (key, value) in currencyData.rates {
+    for (key, value) in currencyData.conversion_rates {
       guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
         continue
       }

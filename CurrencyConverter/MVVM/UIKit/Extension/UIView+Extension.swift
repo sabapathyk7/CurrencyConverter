@@ -15,32 +15,35 @@ extension UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
+    func setAutoLayout() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
     var marginGuide: UILayoutGuide {
         return self.layoutMarginsGuide
     }
-    var margingTop: NSLayoutYAxisAnchor {
-        return self.layoutMarginsGuide.topAnchor
+    var marginTop: NSLayoutYAxisAnchor {
+        return marginGuide.topAnchor
     }
     var marginBottom: NSLayoutYAxisAnchor {
-        return self.layoutMarginsGuide.bottomAnchor
+        return marginGuide.bottomAnchor
     }
     var marginLeading: NSLayoutXAxisAnchor {
-        return self.layoutMarginsGuide.leadingAnchor
+        return marginGuide.leadingAnchor
     }
     var marginTrailing: NSLayoutXAxisAnchor {
-        return self.layoutMarginsGuide.trailingAnchor
+        return marginGuide.trailingAnchor
     }
     var marginWidth: NSLayoutDimension {
-        return self.layoutMarginsGuide.widthAnchor
+        return marginGuide.widthAnchor
     }
     var marginHeight: NSLayoutDimension {
-        return self.layoutMarginsGuide.heightAnchor
+        return marginGuide.heightAnchor
     }
     var marginCenterX: NSLayoutXAxisAnchor {
-        return self.layoutMarginsGuide.centerXAnchor
+        return marginGuide.centerXAnchor
     }
     var marginCenterY: NSLayoutYAxisAnchor {
-        return self.layoutMarginsGuide.centerYAnchor
+        return marginGuide.centerYAnchor
     }
 
     struct AnchoredConstraints {

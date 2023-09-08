@@ -17,8 +17,9 @@ struct CurrencySwiftUIView: View {
                     .padding()
                 Spacer()
                 Picker("Currency", selection: $viewModel.selectedBaseCurrency) {
+                    Text(viewModel.selectedBaseCurrency).tag(viewModel.selectedBaseCurrency)
                   ForEach(viewModel.tableViewDataArray, id: \.self) {
-                      Text($0.currencyCode)
+                      Text($0.currencyCode).tag($0.currencyCode)
                     }
                 }
                 .pickerStyle(.menu)
@@ -28,7 +29,7 @@ struct CurrencySwiftUIView: View {
         }
         .onAppear {
             Task {
-                viewModel.callFetchCurrencyDataSwiftUI()
+                viewModel.callFetchCurrencyDataSwiftUI(base: viewModel.selectedBaseCurrency)
             }
         }
     }

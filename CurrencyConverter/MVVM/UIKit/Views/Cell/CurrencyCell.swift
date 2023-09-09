@@ -60,7 +60,7 @@ class CurrencyCellView: UIView {
                                  inset: UIEdgeInsets(top: 0, left: 1.0, bottom: 0, right: 0))
     }
     fileprivate func update(with model: TableViewData) {
-        currencyCodeLabel.text = model.currencyCode
+        currencyCodeLabel.text = model.currencyCode + model.currencyCode.dropLast().description.countryFlag()
         currencyRateLabel.text = String(format: "%.2f", model.currencyValue.rounded(toPlaces: 2))
         currencyNameLabel.text = model.currencyName
     }

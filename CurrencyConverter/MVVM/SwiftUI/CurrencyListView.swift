@@ -46,15 +46,20 @@ struct CurrencyListView: View {
     }
 
   func groupByCurrency(_ tableViewData: [TableViewData]) -> ([String], [(String, [TableViewData])]) {
-    let grouped = Dictionary(grouping: tableViewData, by: {String($0.currencyName.prefix(1))})
+    let grouped = Dictionary(grouping: tableViewData, by: {
+        String($0.currencyName.prefix(1))
+    })
     return (grouped.keys.sorted(), grouped.sorted(by: {$0.key < $1.key}))
   }
 }
 
-// struct CurrencyListView_Previews: PreviewProvider {
-// static var previews: some View {
-//      let tableViewData = TableViewData(base: "EUR", currencyCode: "USD", currencyName: "Dollar", currencyValue: 1, currencySymbol: "$")
-//      let tableViewDataArray = [tableViewData, tableViewData]
-//   CurrencyListView(tableViewData: tableViewDataArray)
-//  }
-// }
+ struct CurrencyListView_Previews: PreviewProvider {
+ static var previews: some View {
+     let viewData = TableViewData(base: "EUR",
+                                       currencyCode: "USD",
+                                       currencyName: "Dollar",
+                                       currencyValue: 1,
+                                       currencySymbol: "$")
+     CurrencyListView(tableViewData: .constant([viewData, viewData]))
+  }
+ }

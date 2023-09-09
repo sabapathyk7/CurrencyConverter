@@ -5,7 +5,7 @@
 //  Created by kanagasabapathy on 28/06/23.
 //
 
-//http://data.fixer.io/api/latest?access_key=b81d1c9164455d145db5025bad69d5c2
+// http://data.fixer.io/api/latest?access_key=b81d1c9164455d145db5025bad69d5c2
 
 import Foundation
 
@@ -22,7 +22,6 @@ class RequestService {
       URLSession.shared.dataTask(with: URLRequest.init(url: apiURL)) { data, _, error in
         if let data = data {
           do {
-              let json = try? JSONSerialization.jsonObject(with: data, options: [])
             let currencyData = try JSONDecoder().decode(CurrencyData.self, from: data)
             completion(currencyData)
           } catch let error {

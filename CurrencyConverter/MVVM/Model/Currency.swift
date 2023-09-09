@@ -9,7 +9,8 @@ import Foundation
 
 // Active
 // https://pastebin.com/raw/Nq1KvHjZ
-//https://v6.exchangerate-api.com/v6/c1a4fe51ecfcebb4ddda0835/latest/INR
+// https://v6.exchangerate-api.com/v6/c1a4fe51ecfcebb4ddda0835/latest/INR
+
 struct CurrencyData: Decodable, Hashable {
 //    let success: Bool
 //    let timestamp: Int

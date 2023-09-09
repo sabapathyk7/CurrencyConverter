@@ -11,9 +11,7 @@ typealias Currencies = [TableViewData]
 private let baseURL = "https://v6.exchangerate-api.com/v6/"
 private let accessKey = "c1a4fe51ecfcebb4ddda0835"
 
-
 struct CurrencyConverter: Reducer {
-
     struct State: Equatable {
         var initialCurrencies: Currencies = []
         var currencies: Currencies = []
@@ -25,7 +23,7 @@ struct CurrencyConverter: Reducer {
         case processAPIResponse(CurrencyData)
         case quantityTextFieldEntered(String)
         case countryCodePickerSelected(String)
-        case updateCurrencies([TableViewData])
+        case updateCurrencies(Currencies)
     }
     var body: some ReducerOf<Self> {
         Reduce { state, action in

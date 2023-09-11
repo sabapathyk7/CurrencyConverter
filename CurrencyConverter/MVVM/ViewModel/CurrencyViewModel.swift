@@ -9,14 +9,15 @@ import Combine
 import Foundation
 
 @MainActor class CurrencyViewModel: ObservableObject {
+    typealias Currencies = [TableViewData]
     private var apiService: RequestService?
     private var cancellable = Set<AnyCancellable>()
     // Outputs
-    @Published var tableViewDataArray: [TableViewData] = [TableViewData]()
+    @Published var tableViewDataArray: Currencies = Currencies()
     // Inputs
     @Published var enteredAmount: String = "1"
     @Published var selectedBaseCurrency: String = "EUR"
-    var tempTableViewDataArray: [TableViewData] = [TableViewData]()
+    var tempTableViewDataArray: Currencies = Currencies()
     let locale: Locale? = Locale.current
 
     init(apiService: RequestService? = RequestService()) {
@@ -39,7 +40,7 @@ import Foundation
       }
       return currencyDet
     }
-    func callFetchCurrencyData(base: String, completion: @escaping ([TableViewData]) -> Void) {
+    func callFetchCurrencyData(base: String, completion: @escaping (Currencies) -> Void) {
         self.apiService?.fetchCurrencyData(baseCurrency: base) { [self] (currencyData) in
          let resultData = self.sortTableViewDataDetails(currencyData: currencyData)
         completion(resultData)
@@ -50,11 +51,11 @@ import Foundation
          _ =  self.sortTableViewDataDetails(currencyData: currencyData)
         }
     }
-  func convertCurrency(by updatingValue: String, currenciesDict: [String: [TableViewData]]?) -> [String: [TableViewData]] {
+  func convertCurrency(by updatingValue: String, currenciesDict: [String: Currencies]?) -> [String: Currencies] {
     guard let currenciesDict = currenciesDict.map({ dict in
       var dict = dict
-      var tempTableViewData: [TableViewData] = [TableViewData]()
-      _ = dict.map({ (key: String, value: [TableViewData]) in
+      var tempTableViewData: Currencies = Currencies()
+      _ = dict.map({ (key: String, value: Currencies) in
         _ = value.map({ tvd in
           var tvd = tvd
           tvd.currencyValue.advance(by: Double(updatingValue) ?? 1.0)
@@ -100,7 +101,7 @@ private extension CurrencyViewModel {
       tableViewDataArray = tempTableViewDataArray
       self.tableViewDataArray =  currencyConvert(amount)
     }
-    func currencyConvert(_ amount: Double) -> [TableViewData] {
+    func currencyConvert(_ amount: Double) -> Currencies {
         let computedTableViewData = tableViewDataArray.map { data in
             return TableViewData(base: selectedBaseCurrency,
                                  currencyCode: data.currencyCode,
@@ -110,10 +111,10 @@ private extension CurrencyViewModel {
           }
         return computedTableViewData
     }
-  func sortTableViewDataDetails(currencyData: CurrencyData) -> ([TableViewData]) {
+  func sortTableViewDataDetails(currencyData: CurrencyData) -> (Currencies) {
 
     let currencyDet = self.fetchAllCurrencyDetails()
-    var arrayOfTableViewData: [TableViewData] = [TableViewData]()
+    var arrayOfTableViewData: Currencies = Currencies()
     for (key, value) in currencyData.conversion_rates {
       guard let currencySymbol = currencyDet.filter({ $0.code.contains(key)}).last else {
         continue

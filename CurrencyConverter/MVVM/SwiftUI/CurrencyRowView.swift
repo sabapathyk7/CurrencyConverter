@@ -13,10 +13,10 @@ struct CurrencyRowView: View {
       HStack(alignment: .bottom) {
         VStack(alignment: .leading) {
           Text(tableViewData.currencyName ).font(.caption)
-          Text(tableViewData.currencyCode).font(.subheadline).bold()
+          Text(tableViewData.currencyCode + tableViewData.currencyCode.dropLast().description.countryFlag()).font(.subheadline).bold()
         }
         Spacer()
-        Text(String(tableViewData.currencyValue)).font(.headline)
+        Text(String(format: "%.2f", tableViewData.currencyValue.rounded(toPlaces: 2))).font(.headline)
       }.padding()
     }
 }

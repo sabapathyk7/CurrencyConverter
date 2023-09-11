@@ -30,8 +30,9 @@ struct CurrencyConverterView: View {
                             get: \.selectedBaseCurrency,
                             send: { .countryCodePickerSelected($0) })
                     ) {
+                        Text(viewStore.selectedBaseCurrency).tag(viewStore.selectedBaseCurrency)
                         ForEach(viewStore.currencies) {
-                            Text($0.currencyCode)
+                            Text($0.currencyCode).tag($0.currencyCode)
                         }
                     }
                     .pickerStyle(.menu)

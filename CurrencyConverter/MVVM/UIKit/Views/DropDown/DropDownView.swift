@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DropDownDelegate: AnyObject {
-  func didSelect(_ index: Int)
+  func didSelect(_ index: Int, _ base: String)
 }
 
 class DropDownView: UIView {
@@ -37,7 +37,6 @@ class DropDownView: UIView {
   }()
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.register(DropdownTableViewCell.self, forCellReuseIdentifier: "DropdownTableViewCell")
     tableView.isHidden = true
     return tableView
@@ -65,7 +64,6 @@ class DropDownView: UIView {
       }
       self.tableView.reloadData()
     }
-
   }
   private func setupUI() {
     self.addSubview(stackView)
@@ -76,10 +74,7 @@ class DropDownView: UIView {
     button.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
     tableViewHeight = tableView.marginHeight.constraint(equalToConstant: 0)
     tableViewHeight?.isActive = true
-    button.translatesAutoresizingMaskIntoConstraints = false
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.pinToLayoutGuide(layoutGuide: self.marginGuide, constant: 0.0)
+    stackView.pinToLayoutGuide(layoutGuide: self.marginGuide)
   }
   @objc private func buttonTapped() {
     tableView.isHidden.toggle()
@@ -92,7 +87,7 @@ extension DropDownView: UITableViewDelegate {
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     button.setTitle(dataSource[indexPath.row] + "⬇\u{FE0E}", for: .normal)
-    delegate?.didSelect(indexPath.row)
+      delegate?.didSelect(indexPath.row, dataSource[indexPath.row])
     tableView.isHidden = true
   }
 }

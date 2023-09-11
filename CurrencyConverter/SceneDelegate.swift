@@ -7,38 +7,40 @@
 
 import UIKit
 
+enum RootView {
+    case swiftui
+    case uikit
+    case tcaswiftui
+    case tcauikit
+}
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
         guard let window = window as UIWindow? else {
             window?.makeKeyAndVisible()
             return
         }
-//        rootViewTCASwiftUI(window: window)
-//            rootViewSwiftUI(window: )
-            rootViewUIKit(window: window)
+        rootView(window: window, rootViewAction: RootView.uikit)
     }
 }
 
 private extension SceneDelegate {
-    func rootViewUIKit(window: UIWindow) {
-        let viewController = CurrencyViewController()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-    }
-    
-    func rootViewSwiftUI(window: UIWindow) {
-        let viewController = CurrencySwiftUIViewController()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-    }
+    func rootView(window: UIWindow, rootViewAction: RootView) {
+        var viewController: UIViewController
+        switch rootViewAction {
+        case .swiftui:
+            viewController = CurrencySwiftUIViewController()
+        case .uikit:
+            viewController = CurrencyViewController()
 
-    func rootViewTCASwiftUI(window: UIWindow) {
-        let viewController = CurrencyTCASwiftUIViewController()
+        case .tcaswiftui:
+            viewController = CurrencyTCASwiftUIViewController()
+
+        case .tcauikit:
+            viewController = CurrencyTCAViewController()
+        }
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }

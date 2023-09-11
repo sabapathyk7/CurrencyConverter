@@ -11,9 +11,7 @@ import SwiftUI
 class CurrencySwiftUIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let hostingVC = UIHostingController(rootView: CurrencySwiftUIView())
-        
         guard let hostingVC = hostingVC as? UIHostingController else {
             return
         }
@@ -34,5 +32,3 @@ class CurrencySwiftUIViewController: UIViewController {
         hostingVC.didMove(toParent: self)
     }
 }
-
-

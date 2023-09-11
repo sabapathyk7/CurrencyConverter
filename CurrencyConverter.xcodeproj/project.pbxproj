@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0BB62B312A9D052E00C71A18 /* CurrencyTCASwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB62B302A9D052E00C71A18 /* CurrencyTCASwiftUIViewController.swift */; };
-		A2168D322A893AAB00F59F40 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2168D312A893AAB00F59F40 /* ComposableArchitecture */; };
 		A2168D352A893F2F00F59F40 /* TCAExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2168D342A893F2F00F59F40 /* TCAExample.swift */; };
+		A23530CD2AA9091100DCE2EC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A23530CC2AA9091100DCE2EC /* ComposableArchitecture */; };
+		A23530D22AAA34C100DCE2EC /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23530D12AAA34C100DCE2EC /* SpinnerViewController.swift */; };
 		A243D1DD2A8BEBE300C18A5F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */; };
 		A25B20452A49EE3200152584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20442A49EE3200152584 /* AppDelegate.swift */; };
 		A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20462A49EE3200152584 /* SceneDelegate.swift */; };
@@ -22,14 +23,12 @@
 		A25B207B2A49F28900152584 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207A2A49F28900152584 /* CurrencyViewController.swift */; };
 		A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207C2A49F2A400152584 /* CurrencyCell.swift */; };
 		A25B207F2A49F2B500152584 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B207E2A49F2B500152584 /* Currency.swift */; };
-		A25B20832A4A124100152584 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B20822A4A124100152584 /* CurrencyView.swift */; };
 		A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F52A854E19003FC29F /* CurrencySwiftUIView.swift */; };
 		A26CC0F82A854E8A003FC29F /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */; };
 		A26CC0FA2A854EB8003FC29F /* CurrencyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */; };
 		A26CC0FC2A8550AB003FC29F /* CurrencySwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */; };
 		A283D07B2A75024C006C5EAE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A283D07A2A75024C006C5EAE /* UIView+Extension.swift */; };
 		A284D15C2A9A523E0083CEB3 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284D15B2A9A523E0083CEB3 /* CurrencyConverter.swift */; };
-		A284D1662A9B9ABE0083CEB3 /* CurrencyTCAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A284D1652A9B9ABE0083CEB3 /* CurrencyTCAService.swift */; };
 		A2A52AE82A9A1B4D00B64DC6 /* CurrencyConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A52AE72A9A1B4D00B64DC6 /* CurrencyConverterView.swift */; };
 		A2AD881A2A96706D0040E959 /* CurrencyTCAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD88192A96706D0040E959 /* CurrencyTCAViewController.swift */; };
 		A2AD881C2A9674D40040E959 /* CurrencyTCATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD881B2A9674D40040E959 /* CurrencyTCATableViewCell.swift */; };
@@ -58,6 +57,7 @@
 /* Begin PBXFileReference section */
 		0BB62B302A9D052E00C71A18 /* CurrencyTCASwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCASwiftUIViewController.swift; sourceTree = "<group>"; };
 		A2168D342A893F2F00F59F40 /* TCAExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAExample.swift; sourceTree = "<group>"; };
+		A23530D12AAA34C100DCE2EC /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		A243D1DC2A8BEBE300C18A5F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A25B20412A49EE3200152584 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25B20442A49EE3200152584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +74,6 @@
 		A25B207A2A49F28900152584 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		A25B207C2A49F2A400152584 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		A25B207E2A49F2B500152584 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		A25B20822A4A124100152584 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		A26CC0F52A854E19003FC29F /* CurrencySwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySwiftUIView.swift; sourceTree = "<group>"; };
 		A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRowView.swift; sourceTree = "<group>"; };
@@ -82,7 +81,6 @@
 		A283D07A2A75024C006C5EAE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A284D15B2A9A523E0083CEB3 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		A284D1632A9B68500083CEB3 /* NotesTCA.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NotesTCA.playground; sourceTree = "<group>"; };
-		A284D1652A9B9ABE0083CEB3 /* CurrencyTCAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCAService.swift; sourceTree = "<group>"; };
 		A2A52AE72A9A1B4D00B64DC6 /* CurrencyConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterView.swift; sourceTree = "<group>"; };
 		A2AD88192A96706D0040E959 /* CurrencyTCAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCAViewController.swift; sourceTree = "<group>"; };
 		A2AD881B2A9674D40040E959 /* CurrencyTCATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTCATableViewCell.swift; sourceTree = "<group>"; };
@@ -96,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2168D322A893AAB00F59F40 /* ComposableArchitecture in Frameworks */,
+				A23530CD2AA9091100DCE2EC /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +122,40 @@
 				A2168D342A893F2F00F59F40 /* TCAExample.swift */,
 			);
 			path = TCANotes;
+			sourceTree = "<group>";
+		};
+		A23530CE2AAA344B00DCE2EC /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				A2B44C2F2A82C68600679367 /* DropDownView.swift */,
+			);
+			path = DropDown;
+			sourceTree = "<group>";
+		};
+		A23530CF2AAA345700DCE2EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */,
+				A25B207C2A49F2A400152584 /* CurrencyCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A23530D02AAA345E00DCE2EC /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				A23530D12AAA34C100DCE2EC /* SpinnerViewController.swift */,
+			);
+			path = ActivityIndicator;
+			sourceTree = "<group>";
+		};
+		A23530D32AAA3FA400DCE2EC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A23530D02AAA345E00DCE2EC /* ActivityIndicator */,
+				A25B207A2A49F28900152584 /* CurrencyViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		A25B20382A49EE3200152584 = {
@@ -189,10 +221,9 @@
 		A25B20752A49EF6E00152584 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A25B207C2A49F2A400152584 /* CurrencyCell.swift */,
-				A25B20822A4A124100152584 /* CurrencyView.swift */,
-				A2B44C2D2A82C2E000679367 /* DropdownTableViewCell.swift */,
-				A2B44C2F2A82C68600679367 /* DropDownView.swift */,
+				A23530D32AAA3FA400DCE2EC /* ViewController */,
+				A23530CF2AAA345700DCE2EC /* Cell */,
+				A23530CE2AAA344B00DCE2EC /* DropDown */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,7 +233,6 @@
 			children = (
 				A283D0782A750212006C5EAE /* Extension */,
 				A25B20752A49EF6E00152584 /* Views */,
-				A25B207A2A49F28900152584 /* CurrencyViewController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -215,7 +245,7 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		A26CC0F42A854DFC003FC29F /* SwiftUIComponents */ = {
+		A26CC0F42A854DFC003FC29F /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
 				A26CC0FB2A8550AB003FC29F /* CurrencySwiftUIViewController.swift */,
@@ -223,7 +253,7 @@
 				A26CC0F72A854E8A003FC29F /* CurrencyListView.swift */,
 				A26CC0F92A854EB8003FC29F /* CurrencyRowView.swift */,
 			);
-			path = SwiftUIComponents;
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		A283D0782A750212006C5EAE /* Extension */ = {
@@ -246,7 +276,6 @@
 		A284D1642A9B9AAB0083CEB3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A284D1652A9B9ABE0083CEB3 /* CurrencyTCAService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,7 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				A25B20762A49EF7400152584 /* UIKit */,
-				A26CC0F42A854DFC003FC29F /* SwiftUIComponents */,
+				A26CC0F42A854DFC003FC29F /* SwiftUI */,
 				A2D511A02A4CA63200A9549C /* Services */,
 				A25B20772A49EF7C00152584 /* ViewModel */,
 				A25B20742A49EF6400152584 /* Model */,
@@ -326,7 +355,7 @@
 			);
 			name = CurrencyConverter;
 			packageProductDependencies = (
-				A2168D312A893AAB00F59F40 /* ComposableArchitecture */,
+				A23530CC2AA9091100DCE2EC /* ComposableArchitecture */,
 			);
 			productName = CurrencyConverter;
 			productReference = A25B20412A49EE3200152584 /* CurrencyConverter.app */;
@@ -401,7 +430,7 @@
 			);
 			mainGroup = A25B20382A49EE3200152584;
 			packageReferences = (
-				A2168D302A893AAB00F59F40 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				A23530CB2AA9091100DCE2EC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = A25B20422A49EE3200152584 /* Products */;
 			projectDirPath = "";
@@ -477,13 +506,12 @@
 				A26CC0F62A854E19003FC29F /* CurrencySwiftUIView.swift in Sources */,
 				A243D1DD2A8BEBE300C18A5F /* String+Extension.swift in Sources */,
 				A2AD881C2A9674D40040E959 /* CurrencyTCATableViewCell.swift in Sources */,
-				A25B20832A4A124100152584 /* CurrencyView.swift in Sources */,
 				A25B20472A49EE3200152584 /* SceneDelegate.swift in Sources */,
 				A284D15C2A9A523E0083CEB3 /* CurrencyConverter.swift in Sources */,
 				0BB62B312A9D052E00C71A18 /* CurrencyTCASwiftUIViewController.swift in Sources */,
 				A25B207D2A49F2A400152584 /* CurrencyCell.swift in Sources */,
 				A25B207F2A49F2B500152584 /* Currency.swift in Sources */,
-				A284D1662A9B9ABE0083CEB3 /* CurrencyTCAService.swift in Sources */,
+				A23530D22AAA34C100DCE2EC /* SpinnerViewController.swift in Sources */,
 				A2B44C2E2A82C2E000679367 /* DropdownTableViewCell.swift in Sources */,
 				A2A52AE82A9A1B4D00B64DC6 /* CurrencyConverterView.swift in Sources */,
 				A26CC0F82A854E8A003FC29F /* CurrencyListView.swift in Sources */,
@@ -818,20 +846,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A2168D302A893AAB00F59F40 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		A23530CB2AA9091100DCE2EC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.52.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A2168D312A893AAB00F59F40 /* ComposableArchitecture */ = {
+		A23530CC2AA9091100DCE2EC /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A2168D302A893AAB00F59F40 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = A23530CB2AA9091100DCE2EC /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

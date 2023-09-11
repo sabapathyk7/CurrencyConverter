@@ -14,7 +14,7 @@ import Foundation
     // Outputs
     @Published var tableViewDataArray: [TableViewData] = [TableViewData]()
     // Inputs
-    @Published var enteredAmount: String = ""
+    @Published var enteredAmount: String = "1"
     @Published var selectedBaseCurrency: String = "EUR"
     var tempTableViewDataArray: [TableViewData] = [TableViewData]()
     let locale: Locale? = Locale.current
@@ -98,12 +98,17 @@ private extension CurrencyViewModel {
     }
     func reactToEnteredAmount(_ amount: Double) {
       tableViewDataArray = tempTableViewDataArray
-      let computedTableViewData = tableViewDataArray.map { data in
-          return TableViewData(base: selectedBaseCurrency, currencyCode: data.currencyCode,
+      self.tableViewDataArray =  currencyConvert(amount)
+    }
+    func currencyConvert(_ amount: Double) -> [TableViewData] {
+        let computedTableViewData = tableViewDataArray.map { data in
+            return TableViewData(base: selectedBaseCurrency,
+                                 currencyCode: data.currencyCode,
                                  currencyName: data.currencyName,
-                                 currencyValue: data.currencyValue * amount, currencySymbol: data.currencySymbol)
-        }
-        self.tableViewDataArray = computedTableViewData
+                                 currencyValue: data.currencyValue * amount,
+                                 currencySymbol: data.currencySymbol)
+          }
+        return computedTableViewData
     }
   func sortTableViewDataDetails(currencyData: CurrencyData) -> ([TableViewData]) {
 
@@ -116,19 +121,21 @@ private extension CurrencyViewModel {
       guard let currencyName = locale?.localizedString(forCurrencyCode: key) else {
         continue
       }
-      let tableViewData = TableViewData(base: self.selectedBaseCurrency, currencyCode: key,
+      let tableViewData = TableViewData(base: self.selectedBaseCurrency,
+                                        currencyCode: key,
                                         currencyName: currencyName,
-                                        currencyValue: value, currencySymbol: currencySymbol.symbol)
+                                        currencyValue: value,
+                                        currencySymbol: currencySymbol.symbol)
       arrayOfTableViewData.append(tableViewData)
     }
     arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
       return (tableViewData1.currencyCode.localizedCaseInsensitiveCompare(tableViewData2.currencyCode) == .orderedAscending)
     })
-    DispatchQueue.main.async {
-      self.tableViewDataArray = arrayOfTableViewData
-    }
-    self.tempTableViewDataArray = arrayOfTableViewData
 
+    self.tempTableViewDataArray = arrayOfTableViewData
+      DispatchQueue.main.async {
+          self.tableViewDataArray = self.currencyConvert(Double(self.enteredAmount) ?? 1.0)
+      }
     return arrayOfTableViewData
   }
 }

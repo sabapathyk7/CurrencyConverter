@@ -273,17 +273,9 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
-		A284D1642A9B9AAB0083CEB3 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		A2879BC42A8F7A5300BD092C /* TCA */ = {
 			isa = PBXGroup;
 			children = (
-				A284D1642A9B9AAB0083CEB3 /* Services */,
 				A2A52AE42A99DC3A00B64DC6 /* SwiftUIViews */,
 				A2AD88182A96703B0040E959 /* UIKit */,
 			);

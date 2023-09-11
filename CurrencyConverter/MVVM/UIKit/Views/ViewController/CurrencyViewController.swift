@@ -7,11 +7,7 @@
 
 import UIKit
 
-class CurrencyViewController: UIViewController, DropDownDelegate {
-    func didSelect(_ index: Int, _ base: String) {
-        fetchDataFromVM(base: base)
-    }
-
+class CurrencyViewController: UIViewController {
     private let currencyViewModel: CurrencyViewModel = CurrencyViewModel()
     private var currenciesArray: [TableViewData]?
     private var currenciesDict: [String: [TableViewData]]?
@@ -60,32 +56,38 @@ class CurrencyViewController: UIViewController, DropDownDelegate {
         createSpinnerView()
         view.backgroundColor = .white
         fetchDataFromVM(base: "EUR")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: { [self] in
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+            setupUI()
+            self.currencyTableView.reloadData()
+        })
         dropDownView.delegate = self
     }
-    func createSpinnerView() {
+    private func createSpinnerView() {
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
     }
-    func fetchDataFromVM(base: String) {
+    private func fetchDataFromVM(base: String) {
+        let textFieldInput = textField.text ?? "1"
         currencyViewModel.callFetchCurrencyData(base: base) { currencyData   in
             self.currenciesArray = currencyData
             self.currenciesDict = Dictionary(grouping: currencyData, by: {String($0.currencyName.prefix(1))})
             self.sectionTitles = self.currenciesDict?.keys.sorted() ?? [String]()
-            self.dropDownView.dataSource = currencyData.map { return $0.currencyCode }
+            self.dropDownView.dataSource = currencyData.map {
+                return $0.currencyCode
+            }
             self.tempCurrenciesDict = self.currenciesDict
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: { [self] in
-                child.willMove(toParent: nil)
-                child.view.removeFromSuperview()
-                child.removeFromParent()
-                setupUI()
+            self.currenciesDict = self.currencyViewModel.convertCurrency(by: textFieldInput, currenciesDict: self.currenciesDict)
+            DispatchQueue.main.async {
                 self.currencyTableView.reloadData()
-                self.currencyCollectionView.reloadData()
-            })
+            }
         }
     }
-    func updateConstraints() {
+    private func updateConstraints() {
         textField.anchor(top: view.marginTop,
                          leading: view.marginLeading,
                          trailing: dropDownView.marginLeading,
@@ -102,14 +104,13 @@ class CurrencyViewController: UIViewController, DropDownDelegate {
                                  trailing: view.safeAreaLayoutGuide.trailingAnchor,
                                  inset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0))
     }
-    func setupUI() {
+    private func setupUI() {
         view.addSubViews([textField, dropDownView, currencyTableView])
         textField.delegate = self
         textField.text = "1"
         updateConstraints()
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
-//        58131247
 
         currencyTableView.sectionIndexColor = UIColor(red: 58/255, green: 131/255, blue: 247/255, alpha: 1.0)
 
@@ -234,6 +235,12 @@ extension CurrencyViewController: UITextFieldDelegate {
         isSearching = true
         currencyTableView.reloadData()
         return true
+    }
+}
+
+extension CurrencyViewController: DropDownDelegate {
+    func didSelect(_ index: Int, _ base: String) {
+        fetchDataFromVM(base: base)
     }
 }
 

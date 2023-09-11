@@ -75,7 +75,7 @@ class CurrencyViewController: UIViewController, DropDownDelegate {
             self.sectionTitles = self.currenciesDict?.keys.sorted() ?? [String]()
             self.dropDownView.dataSource = currencyData.map { return $0.currencyCode }
             self.tempCurrenciesDict = self.currenciesDict
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: { [self] in
                 child.willMove(toParent: nil)
                 child.view.removeFromSuperview()
                 child.removeFromParent()

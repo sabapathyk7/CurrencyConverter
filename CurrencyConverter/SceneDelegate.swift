@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
             return
         }
-        rootView(window: window, rootViewAction: RootView.uikit)
+        rootView(window: window, rootViewAction: RootView.tcauikit)
     }
 }
 
@@ -39,7 +39,9 @@ private extension SceneDelegate {
             viewController = CurrencyTCASwiftUIViewController()
 
         case .tcauikit:
-            viewController = CurrencyTCAViewController()
+            viewController = CurrencyTCAViewController(store: .init(initialState: .init(), reducer: {
+                CurrencyConverter()
+            }))
         }
         window.rootViewController = viewController
         window.makeKeyAndVisible()

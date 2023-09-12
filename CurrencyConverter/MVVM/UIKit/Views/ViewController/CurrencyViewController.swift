@@ -8,10 +8,11 @@
 import UIKit
 
 class CurrencyViewController: UIViewController {
+    typealias Currencies = [TableViewData]
     private let currencyViewModel: CurrencyViewModel = CurrencyViewModel()
-    private var currenciesArray: [TableViewData]?
-    private var currenciesDict: [String: [TableViewData]]?
-    private var tempCurrenciesDict: [String: [TableViewData]]?
+    private var currenciesArray: Currencies?
+    private var currenciesDict: [String: Currencies]?
+    private var tempCurrenciesDict: [String: Currencies]?
     private var isSearching: Bool = false
     private var sectionTitles: [String] = [String]()
     private var dropDownView: DropDownView = DropDownView()
@@ -106,11 +107,12 @@ class CurrencyViewController: UIViewController {
     }
     private func setupUI() {
         view.addSubViews([textField, dropDownView, currencyTableView])
-        textField.delegate = self
         textField.text = "1"
         updateConstraints()
+        textField.delegate = self
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
+        dropDownView.delegate = self
 
         currencyTableView.sectionIndexColor = UIColor(red: 58/255, green: 131/255, blue: 247/255, alpha: 1.0)
 
@@ -126,15 +128,7 @@ class CurrencyViewController: UIViewController {
 }
 
 extension CurrencyViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let returnedView = UIView(frame: CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: view.frame.height))
-//        returnedView.backgroundColor = .blue
-//        let label = UILabel(frame: CGRect(x: view.frame.origin.x+10, y: view.frame.origin.y+5, width: view.frame.width/3, height: 20))
-//        label.textAlignment = .natural
-//        label.text = sectionTitles[section]
-//        returnedView.addSubview(label)
-//        return returnedView
-//    }
+    
 }
 
 extension CurrencyViewController: UITableViewDataSource {
@@ -168,7 +162,6 @@ extension CurrencyViewController: UITableViewDataSource {
         cell.update(with: model)
         return cell
     }
-
 }
 
 extension CurrencyViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -217,7 +210,6 @@ extension CurrencyViewController: UISearchBarDelegate {
 }
 
 extension CurrencyViewController: UITextFieldDelegate {
-
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text
         guard let stringRange = Range(range, in: currentText ?? "1") else {

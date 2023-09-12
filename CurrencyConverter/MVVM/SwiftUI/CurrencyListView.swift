@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CurrencyListView: View {
-    @Binding var tableViewData: [TableViewData]
+    typealias Currencies = [TableViewData]
+    @Binding var tableViewData: Currencies
     var body: some View {
       let allTableViewData = groupByCurrency(tableViewData).1
       let allKeys = groupByCurrency(tableViewData).0
@@ -45,7 +46,7 @@ struct CurrencyListView: View {
       }
     }
 
-  func groupByCurrency(_ tableViewData: [TableViewData]) -> ([String], [(String, [TableViewData])]) {
+  func groupByCurrency(_ tableViewData: Currencies) -> ([String], [(String, Currencies)]) {
     let grouped = Dictionary(grouping: tableViewData, by: {
         String($0.currencyName.prefix(1))
     })

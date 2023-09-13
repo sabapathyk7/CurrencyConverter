@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
             return
         }
-        rootView(window: window, rootViewAction: RootView.tcauikit)
+        rootView(window: window, rootViewAction: RootView.swiftui)
     }
 }
 

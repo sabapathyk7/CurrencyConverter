@@ -102,7 +102,7 @@ private extension CurrencyViewModel {
       self.tableViewDataArray =  currencyConvert(amount)
     }
     func currencyConvert(_ amount: Double) -> Currencies {
-        let computedTableViewData = tableViewDataArray.map { data in
+        let computedTableViewData = tempTableViewDataArray.map { data in
             return TableViewData(base: selectedBaseCurrency,
                                  currencyCode: data.currencyCode,
                                  currencyName: data.currencyName,
@@ -112,7 +112,6 @@ private extension CurrencyViewModel {
         return computedTableViewData
     }
   func sortTableViewDataDetails(currencyData: CurrencyData) -> (Currencies) {
-
     let currencyDet = self.fetchAllCurrencyDetails()
     var arrayOfTableViewData: Currencies = Currencies()
     for (key, value) in currencyData.conversion_rates {
@@ -132,7 +131,6 @@ private extension CurrencyViewModel {
     arrayOfTableViewData = arrayOfTableViewData.sorted(by: { tableViewData1, tableViewData2 in
       return (tableViewData1.currencyCode.localizedCaseInsensitiveCompare(tableViewData2.currencyCode) == .orderedAscending)
     })
-
     self.tempTableViewDataArray = arrayOfTableViewData
       DispatchQueue.main.async {
           self.tableViewDataArray = self.currencyConvert(Double(self.enteredAmount) ?? 1.0)

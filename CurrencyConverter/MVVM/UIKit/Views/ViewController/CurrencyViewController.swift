@@ -57,7 +57,7 @@ class CurrencyViewController: UIViewController {
         createSpinnerView()
         view.backgroundColor = .white
         fetchDataFromVM(base: "EUR")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: { [self] in
             child.willMove(toParent: nil)
             child.view.removeFromSuperview()
             child.removeFromParent()

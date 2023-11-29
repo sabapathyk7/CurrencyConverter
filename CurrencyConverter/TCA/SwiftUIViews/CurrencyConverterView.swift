@@ -49,7 +49,7 @@ struct CurrencyConverterView: View {
             }
             .onAppear {
                 viewStore.send(.onAppear)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
                     isHidden = true
                 })
             }
